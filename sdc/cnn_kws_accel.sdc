@@ -1,0 +1,91 @@
+###############################################################################
+# Created by write_sdc
+# Thu May 16 09:47:53 2024
+###############################################################################
+current_design cnn_kws_accel
+###############################################################################
+# Timing Constraints
+###############################################################################
+create_clock -name clk -period 10.0000 [get_ports {clk}]
+set_clock_transition 0.1500 [get_clocks {clk}]
+set_clock_uncertainty 0.2500 clk
+set_propagated_clock [get_clocks {clk}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[0]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[10]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[11]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[12]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[13]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[14]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[15]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[1]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[2]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[3]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[4]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[5]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[6]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[7]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[8]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {audio_sample[9]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[0]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[1]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[2]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[3]}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {rst_n}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {sample_valid}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {start}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {done}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_ce_n}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[0]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[1]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[2]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[3]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_douten[0]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_douten[1]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_douten[2]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_douten[3]}]
+set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_sck}]
+###############################################################################
+# Environment
+###############################################################################
+set_load -pin_load 0.0334 [get_ports {done}]
+set_load -pin_load 0.0334 [get_ports {psram_ce_n}]
+set_load -pin_load 0.0334 [get_ports {psram_sck}]
+set_load -pin_load 0.0334 [get_ports {psram_d[3]}]
+set_load -pin_load 0.0334 [get_ports {psram_d[2]}]
+set_load -pin_load 0.0334 [get_ports {psram_d[1]}]
+set_load -pin_load 0.0334 [get_ports {psram_d[0]}]
+set_load -pin_load 0.0334 [get_ports {psram_douten[3]}]
+set_load -pin_load 0.0334 [get_ports {psram_douten[2]}]
+set_load -pin_load 0.0334 [get_ports {psram_douten[1]}]
+set_load -pin_load 0.0334 [get_ports {psram_douten[0]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {clk}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {rst_n}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {sample_valid}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {start}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[15]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[14]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[13]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[12]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[11]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[10]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[9]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[8]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[7]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[6]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[5]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[4]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[3]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[2]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[1]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[0]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {psram_d[3]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {psram_d[2]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {psram_d[1]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {psram_d[0]}]
+set_timing_derate -early 0.9500
+set_timing_derate -late 1.0500
+###############################################################################
+# Design Rules
+###############################################################################
+set_max_transition 0.7500 [current_design]
+set_max_fanout 10.0000 [current_design]
