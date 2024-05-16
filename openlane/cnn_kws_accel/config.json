@@ -1,0 +1,27 @@
+{
+    "DESIGN_NAME": "cnn_kws_accel",
+    "VDD_NETS": ["vccd1"],
+    "GND_NETS": ["vssd1"],
+    "CLOCK_PORT": "clk",
+    "CLOCK_PERIOD": 10.0,
+    "DESIGN_IS_CORE": "0",
+    "RT_MAX_LAYER": "met4",
+    "VERILOG_FILES": [
+              "dir::../../verilog/rtl/cnn_kws_accel.v",
+              "dir::../../verilog/rtl/conv2d_psram.v",
+              "dir::../../verilog/rtl/dct_module.v",
+              "dir::../../verilog/rtl/fully_connected_psram.v",
+              "dir::../../verilog/rtl/hanning_window_imag.v",
+              "dir::../../verilog/rtl/hanning_window_real.v",
+              "dir::../../verilog/rtl/log_module.v",
+              "dir::../../verilog/rtl/maxpool2d_sram.v",
+              "dir::../../verilog/rtl/mel_filterbank.v",
+              "dir::../../verilog/rtl/mfcc_accel.v",
+              "dir::../../verilog/rtl/periodogram_squared.v",
+              "dir::../../verilog/rtl/pow_module.v",
+              "dir::../../verilog/rtl/softmax_psram.v",
+              "dir::../../verilog/rtl/EF_PSRAM_CTRL_V2.v"
+              ]
+              
+              
+}

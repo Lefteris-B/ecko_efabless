@@ -7,21 +7,21 @@
     "ROUTING_CORES": 1,
     "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "wb_clk_i",
-    "CLOCK_NET": "kws_accel.clk",
-    "FP_PDN_MACRO_HOOKS": "kws_accel vccd1 vssd1 vccd1 vssd1",
+    "CLOCK_NET": "mprj.clk",
+    "FP_PDN_MACRO_HOOKS": "mprj vccd1 vssd1 vccd1 vssd1",
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "MAGIC_DEF_LABELS": 0,
     "VERILOG_FILES_BLACKBOX": [
-        "dir::../../verilog/gl/cnn_kws_accel.v"
+        "dir::../../verilog/gl/user_proj_example.v"
     ],
-    "EXTRA_LEFS": "dir::../../lef/cnn_kws_accel.lef",
-    "EXTRA_GDS_FILES": "dir::../../gds/cnn_kws_accel.gds",
-    "EXTRA_LIBS": "dir::../../lib/cnn_kws_accel.lib",
+    "EXTRA_LEFS": "dir::../../lef/user_proj_example.lef",
+    "EXTRA_GDS_FILES": "dir::../../gds/user_proj_example.gds",
+    "EXTRA_LIBS": "dir::../../lib/user_proj_example.lib",
     "EXTRA_SPEFS": [
-        "cnn_kws_accel", 
-        "dir::../../spef/multicorner/cnn_kws_accel.min.spef", 
-        "dir::../../spef/multicorner/cnn_kws_accel.nom.spef", 
-        "dir::../../spef/multicorner/cnn_kws_accel.max.spef"
+        "user_proj_example", 
+        "dir::../../spef/multicorner/user_proj_example.min.spef", 
+        "dir::../../spef/multicorner/user_proj_example.nom.spef", 
+        "dir::../../spef/multicorner/user_proj_example.max.spef"
     ],
     "BASE_SDC_FILE": "dir::base_user_project_wrapper.sdc",
     "IO_SYNC": 0,
