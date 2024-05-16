@@ -1,0 +1,185 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1715852962
+<< obsli1 >>
+rect 1104 2159 26496 27217
+<< obsm1 >>
+rect 934 2128 26656 27248
+<< metal2 >>
+rect 18 28985 74 29785
+rect 3882 28985 3938 29785
+rect 7746 28985 7802 29785
+rect 10966 28985 11022 29785
+rect 14830 28985 14886 29785
+rect 18050 28985 18106 29785
+rect 21914 28985 21970 29785
+rect 25778 28985 25834 29785
+rect 18 0 74 800
+rect 3238 0 3294 800
+rect 7102 0 7158 800
+rect 10322 0 10378 800
+rect 14186 0 14242 800
+rect 18050 0 18106 800
+rect 21270 0 21326 800
+rect 25134 0 25190 800
+<< obsm2 >>
+rect 938 28929 3826 28985
+rect 3994 28929 7690 28985
+rect 7858 28929 10910 28985
+rect 11078 28929 14774 28985
+rect 14942 28929 17994 28985
+rect 18162 28929 21858 28985
+rect 22026 28929 25722 28985
+rect 25890 28929 26650 28985
+rect 938 856 26650 28929
+rect 938 711 3182 856
+rect 3350 711 7046 856
+rect 7214 711 10266 856
+rect 10434 711 14130 856
+rect 14298 711 17994 856
+rect 18162 711 21214 856
+rect 21382 711 25078 856
+rect 25246 711 26650 856
+<< metal3 >>
+rect 26841 27888 27641 28008
+rect 0 26528 800 26648
+rect 26841 23808 27641 23928
+rect 0 22448 800 22568
+rect 26841 19728 27641 19848
+rect 0 19048 800 19168
+rect 26841 16328 27641 16448
+rect 0 14968 800 15088
+rect 26841 12248 27641 12368
+rect 0 10888 800 11008
+rect 26841 8848 27641 8968
+rect 0 7488 800 7608
+rect 26841 4768 27641 4888
+rect 0 3408 800 3528
+rect 26841 688 27641 808
+<< obsm3 >>
+rect 798 26728 26986 27233
+rect 880 26448 26986 26728
+rect 798 24008 26986 26448
+rect 798 23728 26761 24008
+rect 798 22648 26986 23728
+rect 880 22368 26986 22648
+rect 798 19928 26986 22368
+rect 798 19648 26761 19928
+rect 798 19248 26986 19648
+rect 880 18968 26986 19248
+rect 798 16528 26986 18968
+rect 798 16248 26761 16528
+rect 798 15168 26986 16248
+rect 880 14888 26986 15168
+rect 798 12448 26986 14888
+rect 798 12168 26761 12448
+rect 798 11088 26986 12168
+rect 880 10808 26986 11088
+rect 798 9048 26986 10808
+rect 798 8768 26761 9048
+rect 798 7688 26986 8768
+rect 880 7408 26986 7688
+rect 798 4968 26986 7408
+rect 798 4688 26761 4968
+rect 798 3608 26986 4688
+rect 880 3328 26986 3608
+rect 798 888 26986 3328
+rect 798 715 26761 888
+<< metal4 >>
+rect 4118 2128 4438 27248
+rect 7292 2128 7612 27248
+rect 10466 2128 10786 27248
+rect 13640 2128 13960 27248
+rect 16814 2128 17134 27248
+rect 19988 2128 20308 27248
+rect 23162 2128 23482 27248
+rect 26336 2128 26656 27248
+<< labels >>
+rlabel metal3 s 26841 19728 27641 19848 6 audio_sample[0]
+port 1 nsew signal input
+rlabel metal2 s 14186 0 14242 800 6 audio_sample[10]
+port 2 nsew signal input
+rlabel metal3 s 0 22448 800 22568 6 audio_sample[11]
+port 3 nsew signal input
+rlabel metal3 s 26841 16328 27641 16448 6 audio_sample[12]
+port 4 nsew signal input
+rlabel metal2 s 18050 28985 18106 29785 6 audio_sample[13]
+port 5 nsew signal input
+rlabel metal2 s 21270 0 21326 800 6 audio_sample[14]
+port 6 nsew signal input
+rlabel metal3 s 0 3408 800 3528 6 audio_sample[15]
+port 7 nsew signal input
+rlabel metal3 s 26841 27888 27641 28008 6 audio_sample[1]
+port 8 nsew signal input
+rlabel metal2 s 21914 28985 21970 29785 6 audio_sample[2]
+port 9 nsew signal input
+rlabel metal3 s 26841 8848 27641 8968 6 audio_sample[3]
+port 10 nsew signal input
+rlabel metal2 s 18 0 74 800 6 audio_sample[4]
+port 11 nsew signal input
+rlabel metal2 s 25134 0 25190 800 6 audio_sample[5]
+port 12 nsew signal input
+rlabel metal2 s 25778 28985 25834 29785 6 audio_sample[6]
+port 13 nsew signal input
+rlabel metal2 s 7102 0 7158 800 6 audio_sample[7]
+port 14 nsew signal input
+rlabel metal2 s 7746 28985 7802 29785 6 audio_sample[8]
+port 15 nsew signal input
+rlabel metal3 s 0 10888 800 11008 6 audio_sample[9]
+port 16 nsew signal input
+rlabel metal3 s 0 7488 800 7608 6 clk
+port 17 nsew signal input
+rlabel metal3 s 26841 688 27641 808 6 done
+port 18 nsew signal output
+rlabel metal3 s 0 19048 800 19168 6 psram_ce_n
+port 19 nsew signal output
+rlabel metal2 s 3238 0 3294 800 6 psram_d[0]
+port 20 nsew signal bidirectional
+rlabel metal2 s 3882 28985 3938 29785 6 psram_d[1]
+port 21 nsew signal bidirectional
+rlabel metal3 s 26841 4768 27641 4888 6 psram_d[2]
+port 22 nsew signal bidirectional
+rlabel metal2 s 10322 0 10378 800 6 psram_d[3]
+port 23 nsew signal bidirectional
+rlabel metal3 s 0 26528 800 26648 6 psram_douten[0]
+port 24 nsew signal output
+rlabel metal3 s 26841 23808 27641 23928 6 psram_douten[1]
+port 25 nsew signal output
+rlabel metal2 s 10966 28985 11022 29785 6 psram_douten[2]
+port 26 nsew signal output
+rlabel metal2 s 14830 28985 14886 29785 6 psram_douten[3]
+port 27 nsew signal output
+rlabel metal2 s 18050 0 18106 800 6 psram_sck
+port 28 nsew signal output
+rlabel metal3 s 0 14968 800 15088 6 rst_n
+port 29 nsew signal input
+rlabel metal2 s 18 28985 74 29785 6 sample_valid
+port 30 nsew signal input
+rlabel metal3 s 26841 12248 27641 12368 6 start
+port 31 nsew signal input
+rlabel metal4 s 4118 2128 4438 27248 6 vccd1
+port 32 nsew power bidirectional
+rlabel metal4 s 10466 2128 10786 27248 6 vccd1
+port 32 nsew power bidirectional
+rlabel metal4 s 16814 2128 17134 27248 6 vccd1
+port 32 nsew power bidirectional
+rlabel metal4 s 23162 2128 23482 27248 6 vccd1
+port 32 nsew power bidirectional
+rlabel metal4 s 7292 2128 7612 27248 6 vssd1
+port 33 nsew ground bidirectional
+rlabel metal4 s 13640 2128 13960 27248 6 vssd1
+port 33 nsew ground bidirectional
+rlabel metal4 s 19988 2128 20308 27248 6 vssd1
+port 33 nsew ground bidirectional
+rlabel metal4 s 26336 2128 26656 27248 6 vssd1
+port 33 nsew ground bidirectional
+<< properties >>
+string FIXED_BBOX 0 0 27641 29785
+string LEFclass BLOCK
+string LEFview TRUE
+string GDS_END 2487086
+string GDS_FILE /home/iamme/asic_tools/caravel_user_project/openlane/cnn_kws_accel/runs/24_05_16_12_29/results/signoff/cnn_kws_accel.magic.gds
+string GDS_START 509198
+<< end >>
+
