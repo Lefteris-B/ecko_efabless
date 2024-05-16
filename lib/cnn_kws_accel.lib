@@ -1,0 +1,301 @@
+library (cnn_kws_accel) {
+  comment                        : "";
+  delay_model                    : table_lookup;
+  simulation                     : false;
+  capacitive_load_unit (1,pF);
+  leakage_power_unit             : 1pW;
+  current_unit                   : "1A";
+  pulling_resistance_unit        : "1kohm";
+  time_unit                      : "1ns";
+  voltage_unit                   : "1v";
+  library_features(report_delay_calculation);
+
+  input_threshold_pct_rise : 50;
+  input_threshold_pct_fall : 50;
+  output_threshold_pct_rise : 50;
+  output_threshold_pct_fall : 50;
+  slew_lower_threshold_pct_rise : 20;
+  slew_lower_threshold_pct_fall : 20;
+  slew_upper_threshold_pct_rise : 80;
+  slew_upper_threshold_pct_fall : 80;
+  slew_derate_from_library : 1.0;
+
+
+  nom_process                    : 1.0;
+  nom_temperature                : 25.0;
+  nom_voltage                    : 1.80;
+
+  lu_table_template(template_1) {
+    variable_1 : total_output_net_capacitance;
+    index_1 ("0.00050,  0.00159,  0.00506,  0.01608,  0.05115,  0.16265,  0.51728");
+  }
+  type ("audio_sample") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 16;
+    bit_from : 15;
+    bit_to : 0;
+  }
+  type ("psram_d") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 4;
+    bit_from : 3;
+    bit_to : 0;
+  }
+  type ("psram_douten") {
+    base_type : array;
+    data_type : bit;
+    bit_width : 4;
+    bit_from : 3;
+    bit_to : 0;
+  }
+
+  cell ("cnn_kws_accel") {
+    pin("clk") {
+      direction : input;
+      capacitance : 0.0241;
+    }
+    pin("done") {
+      direction : output;
+      capacitance : 0.0011;
+      timing() {
+        related_pin : "start";
+        timing_sense : positive_unate;
+        timing_type : combinational;
+	cell_rise(template_1) {
+          values("0.96102,0.96593,0.97836,1.00682,1.08041,1.30346,2.01914");
+	}
+	rise_transition(template_1) {
+          values("0.02810,0.03098,0.04008,0.06765,0.16235,0.48215,1.50602");
+	}
+	cell_fall(template_1) {
+          values("1.04172,1.04568,1.05599,1.07909,1.13311,1.28554,1.76584");
+	}
+	fall_transition(template_1) {
+          values("0.02071,0.02326,0.03050,0.04990,0.10896,0.30673,0.94765");
+	}
+      }
+      timing() {
+        related_pin : "clk";
+        timing_type : rising_edge;
+	cell_rise(template_1) {
+          values("2.61931,2.62422,2.63664,2.66511,2.73870,2.96174,3.67742");
+	}
+	rise_transition(template_1) {
+          values("0.02810,0.03098,0.04008,0.06765,0.16235,0.48215,1.50602");
+	}
+	cell_fall(template_1) {
+          values("2.35704,2.36099,2.37130,2.39440,2.44842,2.60086,3.08115");
+	}
+	fall_transition(template_1) {
+          values("0.02071,0.02326,0.03050,0.04990,0.10896,0.30673,0.94765");
+	}
+      }
+    }
+    pin("psram_ce_n") {
+      direction : output;
+      capacitance : 0.0006;
+      timing() {
+        related_pin : "clk";
+        timing_type : rising_edge;
+	cell_rise(template_1) {
+          values("2.34801,2.35236,2.36364,2.39110,2.46417,2.68848,3.39893");
+	}
+	rise_transition(template_1) {
+          values("0.02225,0.02551,0.03527,0.06457,0.16177,0.48312,1.50732");
+	}
+	cell_fall(template_1) {
+          values("2.81613,2.82005,2.83017,2.85334,2.90757,3.05963,3.53887");
+	}
+	fall_transition(template_1) {
+          values("0.02059,0.02324,0.03048,0.05005,0.10922,0.30690,0.95415");
+	}
+      }
+    }
+    pin("psram_sck") {
+      direction : output;
+      capacitance : 0.0014;
+      timing() {
+        related_pin : "clk";
+        timing_type : rising_edge;
+	cell_rise(template_1) {
+          values("2.28570,2.29004,2.30131,2.32876,2.40184,2.62609,3.33629");
+	}
+	rise_transition(template_1) {
+          values("0.02227,0.02552,0.03530,0.06457,0.16183,0.48304,1.50716");
+	}
+	cell_fall(template_1) {
+          values("2.74979,2.75371,2.76383,2.78699,2.84120,2.99332,3.47274");
+	}
+	fall_transition(template_1) {
+          values("0.02062,0.02326,0.03049,0.05002,0.10919,0.30686,0.95274");
+	}
+      }
+    }
+    pin("rst_n") {
+      direction : input;
+      capacitance : 0.0028;
+      timing() {
+        related_pin : "clk";
+        timing_type : hold_rising;
+	rise_constraint(scalar) {
+          values("0.39331");
+	}
+	fall_constraint(scalar) {
+          values("-0.06698");
+	}
+      }
+      timing() {
+        related_pin : "clk";
+        timing_type : setup_rising;
+	rise_constraint(scalar) {
+          values("1.26454");
+	}
+	fall_constraint(scalar) {
+          values("1.29282");
+	}
+      }
+    }
+    pin("sample_valid") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("start") {
+      direction : input;
+      capacitance : 0.0034;
+      timing() {
+        related_pin : "clk";
+        timing_type : hold_rising;
+	rise_constraint(scalar) {
+          values("-0.34964");
+	}
+	fall_constraint(scalar) {
+          values("-0.52161");
+	}
+      }
+      timing() {
+        related_pin : "clk";
+        timing_type : setup_rising;
+	rise_constraint(scalar) {
+          values("0.57107");
+	}
+	fall_constraint(scalar) {
+          values("0.76874");
+	}
+      }
+    }
+    bus("audio_sample") {
+      bus_type : audio_sample;
+      direction : input;
+      capacitance : 0.0000;
+    pin("audio_sample[15]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[14]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[13]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[12]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[11]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[10]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[9]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[8]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[7]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[6]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[5]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[4]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[3]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[2]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[1]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    pin("audio_sample[0]") {
+      direction : input;
+      capacitance : 0.0000;
+    }
+    }
+    bus("psram_d") {
+      bus_type : psram_d;
+      direction : inout;
+      capacitance : 0.0000;
+    pin("psram_d[3]") {
+      direction : inout;
+      capacitance : 0.0008;
+    }
+    pin("psram_d[2]") {
+      direction : inout;
+      capacitance : 0.0007;
+    }
+    pin("psram_d[1]") {
+      direction : inout;
+      capacitance : 0.0010;
+    }
+    pin("psram_d[0]") {
+      direction : inout;
+      capacitance : 0.0074;
+    }
+    }
+    bus("psram_douten") {
+      bus_type : psram_douten;
+      direction : output;
+      capacitance : 0.0000;
+    pin("psram_douten[3]") {
+      direction : output;
+      capacitance : 0.0010;
+    }
+    pin("psram_douten[2]") {
+      direction : output;
+      capacitance : 0.0010;
+    }
+    pin("psram_douten[1]") {
+      direction : output;
+      capacitance : 0.0009;
+    }
+    pin("psram_douten[0]") {
+      direction : output;
+      capacitance : 0.0006;
+    }
+    }
+  }
+
+}
