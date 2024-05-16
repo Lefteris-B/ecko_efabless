@@ -8,7 +8,7 @@ module maxpool_psram #(
     parameter ADDR_WIDTH = 24
 ) (
     input wire clk,
-    input wire rst_n,
+    input wire rst,
     input wire start,
     input wire [ADDR_WIDTH-1:0] input_addr,
     input wire [ADDR_WIDTH-1:0] output_addr,
@@ -39,7 +39,7 @@ module maxpool_psram #(
     // Instantiate PSRAM controller
     EF_PSRAM_CTRL_V2 psram_ctrl (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .addr(addr),
         .data_i(psram_data_i),
         .data_o(psram_data_o),
@@ -68,8 +68,8 @@ module maxpool_psram #(
     integer i, j, k, m, n;
 
     // State machine
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n)
+    always @(posedge clk) begin
+        if (rst)
             state <= IDLE;
         else
             state <= next_state;
@@ -88,8 +88,8 @@ module maxpool_psram #(
     end
 
     // Control logic for PSRAM operations
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             addr <= 0;
             psram_data_i <= 0;
             psram_start <= 0;
@@ -117,8 +117,8 @@ module maxpool_psram #(
     end
 
     // Max pooling operation
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             data_out <= 0;
             data_out_valid <= 0;
             for (i = 0; i < INPUT_HEIGHT; i = i + 1) begin
@@ -162,4 +162,3 @@ module maxpool_psram #(
 
     assign done = (state == DONE);
 endmodule
-

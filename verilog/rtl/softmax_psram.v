@@ -4,7 +4,7 @@ module softmax_psram #(
     parameter ADDR_WIDTH = 24
 ) (
     input wire clk,
-    input wire rst_n,
+    input wire rst,
     input wire start,
     input wire [ADDR_WIDTH-1:0] input_addr,
     input wire [ADDR_WIDTH-1:0] output_addr,
@@ -35,14 +35,14 @@ module softmax_psram #(
     // Instantiate PSRAM controller
     EF_PSRAM_CTRL_V2 psram_ctrl (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .addr(addr),
         .data_i(psram_data_i),
         .data_o(psram_data_o),
         .size(size),
         .start(psram_start),
         .done(psram_done),
-        .wait_states(4'b0000),  // Adjust wait states if necessary
+        .wait_states(4'b0000), // Adjust wait states if necessary
         .cmd(cmd),
         .rd_wr(rd_wr),
         .qspi(qspi),
@@ -61,8 +61,8 @@ module softmax_psram #(
     reg [2*ACTIV_BITS-1:0] sum_exp;
     reg [ACTIV_BITS-1:0] softmax_values [0:INPUT_SIZE-1];
 
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             data_valid <= 0;
             psram_start <= 0;
             addr <= 0;
@@ -107,4 +107,3 @@ module softmax_psram #(
     assign done = psram_done && !psram_start && !data_valid;
 
 endmodule
-

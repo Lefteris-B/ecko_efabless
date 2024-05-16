@@ -8,7 +8,7 @@ module conv2d_psram #(
     parameter ACTIV_BITS = 16
 ) (
     input wire clk,
-    input wire rst_n,
+    input wire rst,
     input wire [INPUT_WIDTH * INPUT_HEIGHT * INPUT_CHANNELS * ACTIV_BITS-1:0] data_in,
     input wire data_valid,
     output wire [INPUT_WIDTH * INPUT_HEIGHT * NUM_FILTERS * ACTIV_BITS-1:0] data_out,
@@ -47,7 +47,7 @@ module conv2d_psram #(
     // Instantiate PSRAM controller
     EF_PSRAM_CTRL_V2 psram_ctrl (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .addr(addr),
         .data_i(psram_data),
         .data_o(psram_data_out),
@@ -74,8 +74,8 @@ module conv2d_psram #(
     integer i, j, k, l, m, n, p, q;
 
     // State machine
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n)
+    always @(posedge clk) begin
+        if (rst)
             state <= IDLE;
         else
             state <= next_state;
@@ -94,8 +94,8 @@ module conv2d_psram #(
     end
 
     // Control logic for PSRAM operations
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             addr <= 24'b0;
             psram_data <= 32'b0;
             psram_start <= 0;
@@ -128,8 +128,8 @@ module conv2d_psram #(
     end
 
     // Convolution operation
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             for (i = 0; i < INPUT_HEIGHT; i = i + 1)
                 for (j = 0; j < INPUT_WIDTH; j = j + 1)
                     for (k = 0; k < NUM_FILTERS; k = k + 1)
@@ -161,4 +161,3 @@ module conv2d_psram #(
     assign done = (state == DONE); // Drive the done signal when state is DONE
 
 endmodule
-

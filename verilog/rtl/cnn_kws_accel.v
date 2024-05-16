@@ -1,14 +1,13 @@
 `default_nettype none
 
 module cnn_kws_accel (
-
-`ifdef USE_POWER_PINS
-    inout vccd1,    // User area 1 1.8V power
-    inout vssd1,    // User area 1 digital ground
-`endif
+    `ifdef USE_POWER_PINS
+        inout vccd1,    // User area 1 1.8V power
+        inout vssd1,    // User area 1 digital ground
+    `endif
 
     input wire clk,
-    input wire rst_n,
+    input wire rst,
     input wire start,
     input wire [15:0] audio_sample, // Audio sample input
     input wire sample_valid, // New input to indicate the sample is accepted
@@ -44,8 +43,8 @@ module cnn_kws_accel (
     state_t state, next_state;
 
     // State machine
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n)
+    always @(posedge clk) begin
+        if (rst)
             state <= IDLE;
         else
             state <= next_state;
@@ -138,7 +137,7 @@ module cnn_kws_accel (
 
     mfcc_accel mfcc (
         .clk(clk),
-        .rst(rst_n),
+        .rst(rst),
         .audio_sample(audio_sample),
         .sample_valid(sample_valid), // Connect sample_valid to mfcc_accel
         .mfcc_feature(mfcc_feature),
@@ -155,7 +154,7 @@ module cnn_kws_accel (
         .ACTIV_BITS(16)
     ) conv1 (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .data_in(mfcc_feature), // MFCC feature as input
         .data_valid(conv1_data_valid),
         .data_out(conv1_data_out),
@@ -179,7 +178,7 @@ module cnn_kws_accel (
         .ACTIV_BITS(16)
     ) conv2 (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .data_in(conv1_data_out), // conv1 output as input
         .data_valid(conv2_data_valid),
         .data_out(conv2_data_out),
@@ -199,7 +198,7 @@ module cnn_kws_accel (
         .ACTIV_BITS(16)
     ) fc1 (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .data_in(conv2_data_out),
         .data_valid(conv2_data_out_valid),
         .data_out(fc1_data_out),
@@ -219,7 +218,7 @@ module cnn_kws_accel (
         .ACTIV_BITS(16)
     ) fc2 (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .data_in(fc1_data_out),
         .data_valid(fc1_data_out_valid),
         .data_out(fc2_data_out),
@@ -243,7 +242,7 @@ module cnn_kws_accel (
         .ADDR_WIDTH(24)
     ) maxpool (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .start(maxpool_data_valid),
         .input_addr(maxpool_input_addr),
         .output_addr(maxpool_output_addr),
@@ -260,7 +259,7 @@ module cnn_kws_accel (
         .ADDR_WIDTH(24)
     ) softmax (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .start(softmax_start),
         .input_addr(softmax_input_addr),
         .output_addr(softmax_output_addr),

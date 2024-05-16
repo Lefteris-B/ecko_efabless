@@ -1,39 +1,6 @@
-/*
-	Copyright 2020 Efabless Corp.
-
-	Author: Mohamed Shalan (mshalan@efabless.com)
-	
-	Licensed under the Apache License, Version 2.0 (the "License"); 
-	you may not use this file except in compliance with the License. 
-	You may obtain a copy of the License at:
-	http://www.apache.org/licenses/LICENSE-2.0
-	Unless required by applicable law or agreed to in writing, software 
-	distributed under the License is distributed on an "AS IS" BASIS, 
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-	See the License for the specific language governing permissions and 
-	limitations under the License.
-*/
-/*
-    QSPI PSRAM Controller 
-
-    Pseudostatic RAM (PSRAM) is DRAM combined with a self-refresh circuit. 
-    It appears externally as slower SRAM, albeit with a density/cost advantage 
-    over true SRAM, and without the access complexity of DRAM.
-
-    The controller was designed after:
-        - https://www.issi.com/WW/pdf/66-67WVS4M8ALL-BLL.pdf and
-        - https://www.microchip.com/en-us/parametric-search/514
-    utilizing SPI, QSPI and QPI modes
-*/
-
-`timescale              1ns/1ps
-`default_nettype        none
-
-
-
 module EF_PSRAM_CTRL_V2 (
     input   wire            clk,
-    input   wire            rst_n,
+    input   wire            rst,
     input   wire [23:0]     addr,
     input   wire [31: 0]    data_i,
     output  wire [31: 0]    data_o,
@@ -69,13 +36,13 @@ module EF_PSRAM_CTRL_V2 (
             BUSY: if(done) nstate = IDLE; else nstate = BUSY;
         endcase 
 
-    always @ (posedge clk or negedge rst_n)
-        if(!rst_n) state <= IDLE;
+    always @ (posedge clk or posedge rst)
+        if(rst) state <= IDLE;
         else state <= nstate;
 
     // Drive the Serial Clock (sck) @ clk/2 
-    always @ (posedge clk or negedge rst_n)
-        if(!rst_n) 
+    always @ (posedge clk or posedge rst)
+        if(rst) 
             sck <= 1'b0;
         else if(done)//(state == IDLE) 
             sck <= 1'b0;
@@ -84,8 +51,8 @@ module EF_PSRAM_CTRL_V2 (
         
 
     // ce_n logic
-    always @ (posedge clk or negedge rst_n)
-        if(!rst_n) 
+    always @ (posedge clk or posedge rst)
+        if(rst) 
             ce_n <= 1'b1;
         else if(done)
             ce_n <= 1'b1;
@@ -103,8 +70,8 @@ module EF_PSRAM_CTRL_V2 (
     
     assign done     = (counter == final_count);
 
-    always @ (posedge clk or negedge rst_n)
-        if(!rst_n) 
+    always @ (posedge clk or posedge rst)
+        if(rst) 
             counter <= 8'b0;
         else if(sck & ~done) 
             counter <= counter + 1'b1;

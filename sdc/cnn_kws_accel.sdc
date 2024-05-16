@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Thu May 16 09:47:53 2024
+# Thu May 16 18:07:59 2024
 ###############################################################################
 current_design cnn_kws_accel
 ###############################################################################
@@ -30,7 +30,7 @@ set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[
 set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[1]}]
 set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[2]}]
 set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {psram_d[3]}]
-set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {rst_n}]
+set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {rst}]
 set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {sample_valid}]
 set_input_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {start}]
 set_output_delay 2.0000 -clock [get_clocks {clk}] -add_delay [get_ports {done}]
@@ -59,7 +59,7 @@ set_load -pin_load 0.0334 [get_ports {psram_douten[2]}]
 set_load -pin_load 0.0334 [get_ports {psram_douten[1]}]
 set_load -pin_load 0.0334 [get_ports {psram_douten[0]}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {clk}]
-set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {rst_n}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {rst}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {sample_valid}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {start}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {audio_sample[15]}]

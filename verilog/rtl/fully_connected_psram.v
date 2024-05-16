@@ -4,7 +4,7 @@ module fully_connected_psram #(
     parameter ACTIV_BITS = 16
 ) (
     input wire clk,
-    input wire rst_n,
+    input wire rst,
     input wire [INPUT_SIZE*ACTIV_BITS-1:0] data_in,
     input wire data_valid,
     output wire [OUTPUT_SIZE*ACTIV_BITS-1:0] data_out,
@@ -43,7 +43,7 @@ module fully_connected_psram #(
     // Instantiate PSRAM controller
     EF_PSRAM_CTRL_V2 psram_ctrl (
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .addr(addr),
         .data_i(psram_data),
         .data_o(psram_data_out),
@@ -70,8 +70,8 @@ module fully_connected_psram #(
     integer i, j;
 
     // State machine
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n)
+    always @(posedge clk) begin
+        if (rst)
             state <= IDLE;
         else
             state <= next_state;
@@ -90,8 +90,8 @@ module fully_connected_psram #(
     end
 
     // Control logic for PSRAM operations
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             addr <= 24'b0;
             psram_data <= 32'b0;
             psram_start <= 0;
@@ -124,8 +124,8 @@ module fully_connected_psram #(
     end
 
     // Fully connected operation
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
+    always @(posedge clk) begin
+        if (rst) begin
             for (i = 0; i < OUTPUT_SIZE; i = i + 1)
                 fc_result[i] <= 0;
         end else if (state == FC) begin
@@ -145,4 +145,3 @@ module fully_connected_psram #(
     assign done = (state == DONE); // Drive the done signal when state is DONE
 
 endmodule
-

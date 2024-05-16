@@ -81,26 +81,22 @@ module user_project_wrapper #(
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
-
+  
+// Create separate wires for the cnn_kws_accel ports
 cnn_kws_accel kws_accel (
-
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
-
     .clk(wb_clk_i),
-    .rst_n(wb_rst_i), 
-    .start(io_in[8]), 
-    .audio_sample(io_in[24:9]), 
-    .sample_valid(io_in[25]), 
-    .done(io_out[0]), 
-    .psram_sck(io_out[1]),
-    .psram_ce_n(io_out[2]),
-    .psram_d(io_oeb[3:0]), 
-    .psram_douten(io_out[6:3]) 
+    .rst(wb_rst_i),
+    .start(la_data_in[0]),
+    .audio_sample(la_data_in[15:0]),
+    .sample_valid(la_data_in[16]),
+    .done(la_data_out[0]),
+    .psram_sck(la_data_out[1]),
+    .psram_ce_n(la_data_out[2]),
+    .psram_d(la_oenb[6:3]),
+    .psram_douten(la_data_out[6:3])
 );
 
-endmodule	// user_project_wrapper
+
+endmodule
 
 `default_nettype wire
