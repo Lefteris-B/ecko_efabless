@@ -1,7 +1,7 @@
 (DELAYFILE
  (SDFVERSION "3.0")
  (DESIGN "user_project_wrapper")
- (DATE "Thu May 16 20:18:48 2024")
+ (DATE "Thu May 16 22:48:18 2024")
  (VENDOR "Parallax")
  (PROGRAM "STA")
  (VERSION "2.4.0")
@@ -17,7 +17,7 @@
    (ABSOLUTE
     (INTERCONNECT wb_clk_i kws_accel.clkbuf_0_clk.A (0.006:0.006:0.006) (0.005:0.005:0.005))
     (INTERCONNECT wb_rst_i kws_accel.input1.A (0.003:0.003:0.003) (0.003:0.003:0.003))
-    (INTERCONNECT io_in[0] kws_accel.input2.A (0.056:0.056:0.056) (0.055:0.055:0.055))
+    (INTERCONNECT io_in[0] kws_accel.input2.A (0.056:0.056:0.056) (0.056:0.056:0.056))
     (INTERCONNECT kws_accel._0611_.X kws_accel._0613_.B (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0612_.X kws_accel._0613_.D_N (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0612_.X kws_accel._0974_.B (0.000:0.000:0.000) (0.000:0.000:0.000))
@@ -748,7 +748,7 @@
     (INTERCONNECT kws_accel._0989_.X kws_accel._0990_.B1 (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0990_.Y kws_accel.wire6.A (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0991_.X kws_accel._0992_.B2 (0.000:0.000:0.000) (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel._0992_.X io_oeb[3] (0.748:0.748:0.749) (0.794:0.794:0.795))
+    (INTERCONNECT kws_accel._0992_.X io_out[3] (0.355:0.355:0.355) (0.362:0.362:0.363))
     (INTERCONNECT kws_accel._0993_.X kws_accel._0994_.A (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0994_.X kws_accel._1314_.D (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0995_.X kws_accel._0996_.A (0.000:0.000:0.000) (0.000:0.000:0.000))
@@ -1905,9 +1905,9 @@
     (INTERCONNECT kws_accel.cnn_kws_accel_11.LO io_out[5] (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.cnn_kws_accel_12.LO io_out[6] (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.cnn_kws_accel_13.HI io_out[3] (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel.cnn_kws_accel_7.LO io_oeb[4] (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel.cnn_kws_accel_8.LO io_oeb[5] (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel.cnn_kws_accel_9.LO io_oeb[6] (0.000:0.000:0.000))
+    (INTERCONNECT kws_accel.cnn_kws_accel_7.LO io_out[4] (0.000:0.000:0.000))
+    (INTERCONNECT kws_accel.cnn_kws_accel_8.LO io_out[5] (0.000:0.000:0.000))
+    (INTERCONNECT kws_accel.cnn_kws_accel_9.LO io_out[6] (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.hold1.X kws_accel._1062_.B1 (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.hold1.X kws_accel._1281_.D (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.hold10.X kws_accel._1027_.A (0.000:0.000:0.000) (0.000:0.000:0.000))
@@ -2100,9 +2100,9 @@
     (INTERCONNECT kws_accel.input1.X kws_accel._0933_.A (0.011:0.011:0.011) (0.010:0.010:0.010))
     (INTERCONNECT kws_accel.input2.X kws_accel._0868_.A1_N (0.006:0.006:0.006) (0.006:0.006:0.006))
     (INTERCONNECT kws_accel.input2.X kws_accel._0878_.A (0.006:0.006:0.006) (0.006:0.006:0.006))
-    (INTERCONNECT kws_accel.output3.X io_out[0] (0.190:0.190:0.190) (0.186:0.186:0.186))
+    (INTERCONNECT kws_accel.output3.X io_out[0] (0.188:0.188:0.188) (0.184:0.184:0.184))
     (INTERCONNECT kws_accel.output4.X io_out[2] (0.244:0.244:0.244) (0.238:0.238:0.238))
-    (INTERCONNECT kws_accel.output5.X io_out[1] (0.439:0.439:0.439) (0.448:0.448:0.448))
+    (INTERCONNECT kws_accel.output5.X io_out[1] (0.436:0.436:0.436) (0.444:0.445:0.445))
     (INTERCONNECT kws_accel.wire6.X kws_accel._0992_.B1 (0.000:0.000:0.000) (0.000:0.000:0.000))
    )
   )
@@ -6205,10 +6205,10 @@
   (INSTANCE kws_accel._0992_)
   (DELAY
    (ABSOLUTE
-    (IOPATH A1_N X (1.464:1.464:1.464) (0.497:0.497:0.497))
-    (IOPATH A2_N X (1.447:1.448:1.450) (0.489:0.490:0.490))
-    (IOPATH B1 X (1.379:1.379:1.379) (0.479:0.479:0.479))
-    (IOPATH B2 X (1.373:1.373:1.374) (0.470:0.471:0.472))
+    (IOPATH A1_N X (1.217:1.217:1.217) (0.539:0.539:0.539))
+    (IOPATH A2_N X (1.200:1.201:1.202) (0.532:0.532:0.532))
+    (IOPATH B1 X (1.131:1.131:1.131) (0.521:0.521:0.521))
+    (IOPATH B2 X (1.124:1.125:1.126) (0.513:0.513:0.514))
    )
   )
  )
@@ -12828,7 +12828,7 @@
   (INSTANCE kws_accel.input2)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (0.233:0.265:0.296) (0.226:0.279:0.331))
+    (IOPATH A X (0.233:0.265:0.297) (0.227:0.279:0.331))
    )
   )
  )
@@ -12837,7 +12837,7 @@
   (INSTANCE kws_accel.output3)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (1.013:1.013:1.013) (0.684:0.684:0.684))
+    (IOPATH A X (1.007:1.007:1.007) (0.681:0.681:0.681))
    )
   )
  )
@@ -12846,7 +12846,7 @@
   (INSTANCE kws_accel.output4)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (1.113:1.113:1.113) (0.752:0.752:0.752))
+    (IOPATH A X (1.111:1.111:1.111) (0.750:0.750:0.750))
    )
   )
  )
@@ -12855,7 +12855,7 @@
   (INSTANCE kws_accel.output5)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (1.302:1.302:1.302) (0.792:0.792:0.792))
+    (IOPATH A X (1.297:1.297:1.297) (0.790:0.790:0.790))
    )
   )
  )

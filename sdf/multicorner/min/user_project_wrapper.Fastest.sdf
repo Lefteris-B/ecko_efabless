@@ -1,7 +1,7 @@
 (DELAYFILE
  (SDFVERSION "3.0")
  (DESIGN "user_project_wrapper")
- (DATE "Thu May 16 20:18:42 2024")
+ (DATE "Thu May 16 22:48:12 2024")
  (VENDOR "Parallax")
  (PROGRAM "STA")
  (VERSION "2.4.0")
@@ -748,7 +748,7 @@
     (INTERCONNECT kws_accel._0989_.X kws_accel._0990_.B1 (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0990_.Y kws_accel.wire6.A (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0991_.X kws_accel._0992_.B2 (0.000:0.000:0.000) (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel._0992_.X io_oeb[3] (0.442:0.442:0.442) (0.467:0.469:0.471))
+    (INTERCONNECT kws_accel._0992_.X io_out[3] (0.200:0.200:0.200) (0.198:0.198:0.199))
     (INTERCONNECT kws_accel._0993_.X kws_accel._0994_.A (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0994_.X kws_accel._1314_.D (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel._0995_.X kws_accel._0996_.A (0.000:0.000:0.000) (0.000:0.000:0.000))
@@ -1905,9 +1905,9 @@
     (INTERCONNECT kws_accel.cnn_kws_accel_11.LO io_out[5] (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.cnn_kws_accel_12.LO io_out[6] (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.cnn_kws_accel_13.HI io_out[3] (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel.cnn_kws_accel_7.LO io_oeb[4] (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel.cnn_kws_accel_8.LO io_oeb[5] (0.000:0.000:0.000))
-    (INTERCONNECT kws_accel.cnn_kws_accel_9.LO io_oeb[6] (0.000:0.000:0.000))
+    (INTERCONNECT kws_accel.cnn_kws_accel_7.LO io_out[4] (0.000:0.000:0.000))
+    (INTERCONNECT kws_accel.cnn_kws_accel_8.LO io_out[5] (0.000:0.000:0.000))
+    (INTERCONNECT kws_accel.cnn_kws_accel_9.LO io_out[6] (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.hold1.X kws_accel._1062_.B1 (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.hold1.X kws_accel._1281_.D (0.000:0.000:0.000) (0.000:0.000:0.000))
     (INTERCONNECT kws_accel.hold10.X kws_accel._1027_.A (0.000:0.000:0.000) (0.000:0.000:0.000))
@@ -2100,9 +2100,9 @@
     (INTERCONNECT kws_accel.input1.X kws_accel._0933_.A (0.005:0.005:0.005) (0.005:0.005:0.005))
     (INTERCONNECT kws_accel.input2.X kws_accel._0868_.A1_N (0.003:0.003:0.003) (0.003:0.003:0.003))
     (INTERCONNECT kws_accel.input2.X kws_accel._0878_.A (0.003:0.003:0.003) (0.003:0.003:0.003))
-    (INTERCONNECT kws_accel.output3.X io_out[0] (0.112:0.112:0.112) (0.110:0.110:0.110))
+    (INTERCONNECT kws_accel.output3.X io_out[0] (0.111:0.111:0.111) (0.108:0.108:0.108))
     (INTERCONNECT kws_accel.output4.X io_out[2] (0.137:0.137:0.137) (0.133:0.133:0.133))
-    (INTERCONNECT kws_accel.output5.X io_out[1] (0.258:0.258:0.258) (0.260:0.260:0.260))
+    (INTERCONNECT kws_accel.output5.X io_out[1] (0.257:0.257:0.257) (0.259:0.259:0.259))
     (INTERCONNECT kws_accel.wire6.X kws_accel._0992_.B1 (0.000:0.000:0.000) (0.000:0.000:0.000))
    )
   )
@@ -6205,10 +6205,10 @@
   (INSTANCE kws_accel._0992_)
   (DELAY
    (ABSOLUTE
-    (IOPATH A1_N X (1.020:1.020:1.020) (0.294:0.294:0.294))
-    (IOPATH A2_N X (1.004:1.007:1.010) (0.294:0.294:0.294))
-    (IOPATH B1 X (0.963:0.963:0.963) (0.335:0.335:0.335))
-    (IOPATH B2 X (0.958:0.958:0.959) (0.328:0.330:0.331))
+    (IOPATH A1_N X (0.855:0.855:0.855) (0.329:0.329:0.329))
+    (IOPATH A2_N X (0.840:0.843:0.845) (0.329:0.329:0.329))
+    (IOPATH B1 X (0.798:0.798:0.798) (0.367:0.367:0.367))
+    (IOPATH B2 X (0.793:0.793:0.794) (0.359:0.361:0.362))
    )
   )
  )
@@ -12837,7 +12837,7 @@
   (INSTANCE kws_accel.output3)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (0.734:0.734:0.734) (0.471:0.471:0.471))
+    (IOPATH A X (0.729:0.729:0.729) (0.469:0.469:0.469))
    )
   )
  )
@@ -12846,7 +12846,7 @@
   (INSTANCE kws_accel.output4)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (0.775:0.775:0.775) (0.496:0.496:0.496))
+    (IOPATH A X (0.773:0.773:0.773) (0.496:0.496:0.496))
    )
   )
  )
@@ -12855,7 +12855,7 @@
   (INSTANCE kws_accel.output5)
   (DELAY
    (ABSOLUTE
-    (IOPATH A X (0.900:0.900:0.900) (0.513:0.513:0.513))
+    (IOPATH A X (0.898:0.898:0.898) (0.512:0.512:0.512))
    )
   )
  )
