@@ -3771,7 +3771,7 @@ PINS 645 ;
         + LAYER met4 ( -675040 -3529950 ) ( -671940 66270 )
         + LAYER met4 ( -855040 -3529950 ) ( -851940 66270 )
         + LAYER met4 ( -1035040 -3529950 ) ( -1031940 66270 )
-        + LAYER met4 ( -1215040 -3396795 ) ( -1211940 66270 )
+        + LAYER met4 ( -1215040 -3529950 ) ( -1211940 66270 )
         + LAYER met4 ( -1395040 -3529950 ) ( -1391940 66270 )
         + LAYER met4 ( 1481140 -3510750 ) ( 1484240 47070 )
         + LAYER met5 ( -1484240 43970 ) ( 1484240 47070 )
@@ -7265,6 +7265,7 @@ SPECIALNETS 8 ;
       NEW met4 0 + SHAPE RING ( -13280 -7920 ) via5_6_3100_3100_2_2_1600_1600 ;
     - vssd2 ( PIN vssd2 ) + USE GROUND
       + ROUTED met4 0 + SHAPE STRIPE ( 246320 251680 ) via5_6_3100_3100_2_2_1600_1600
+      NEW met4 0 + SHAPE STRIPE ( 246320 71680 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 66320 251680 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 66320 71680 ) via5_6_3100_3100_2_2_1600_1600
       NEW met5 3100 + SHAPE STRIPE ( -43630 3491680 ) ( 2963250 3491680 )
@@ -7301,7 +7302,7 @@ SPECIALNETS 8 ;
       NEW met4 3100 + SHAPE STRIPE ( 786320 -38270 ) ( 786320 3557950 )
       NEW met4 3100 + SHAPE STRIPE ( 606320 -38270 ) ( 606320 3557950 )
       NEW met4 3100 + SHAPE STRIPE ( 426320 -38270 ) ( 426320 3557950 )
-      NEW met4 3100 + SHAPE STRIPE ( 246320 94885 ) ( 246320 3557950 )
+      NEW met4 3100 + SHAPE STRIPE ( 246320 -38270 ) ( 246320 3557950 )
       NEW met4 3100 + SHAPE STRIPE ( 66320 -38270 ) ( 66320 3557950 )
       NEW met4 3100 + SHAPE RING ( 2942500 -19070 ) ( 2942500 3538750 )
       NEW met5 3100 + SHAPE RING ( -24430 3537200 ) ( 2944050 3537200 )
@@ -7657,6 +7658,8 @@ SPECIALNETS 8 ;
       NEW met4 0 + SHAPE STRIPE ( 246320 611680 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 246320 431680 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 246320 251680 ) via5_6_3100_3100_2_2_1600_1600
+      NEW met4 0 + SHAPE STRIPE ( 246320 71680 ) via5_6_3100_3100_2_2_1600_1600
+      NEW met4 0 + SHAPE STRIPE ( 246320 -17520 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 66320 3537200 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 66320 3491680 ) via5_6_3100_3100_2_2_1600_1600
       NEW met4 0 + SHAPE STRIPE ( 66320 3311680 ) via5_6_3100_3100_2_2_1600_1600
@@ -7732,86 +7735,18 @@ NETS 637 ;
     - analog_io[7] ( PIN analog_io[7] ) + USE SIGNAL ;
     - analog_io[8] ( PIN analog_io[8] ) + USE SIGNAL ;
     - analog_io[9] ( PIN analog_io[9] ) + USE SIGNAL ;
-    - io_in[0] ( PIN io_in[0] ) ( kws_accel audio_sample[0] ) + USE SIGNAL
-      + ROUTED met2 ( 2811750 32980 ) ( * 372980 )
-      NEW met3 ( 61870 372980 ) ( 2811750 * )
-      NEW met3 ( 2811750 32980 ) ( 2917780 * 0 )
-      NEW met2 ( 60260 364820 0 ) ( 61870 * )
-      NEW met2 ( 61870 364820 ) ( * 372980 )
-      NEW met2 ( 2811750 32980 ) M2M3_PR
-      NEW met2 ( 2811750 372980 ) M2M3_PR
-      NEW met2 ( 61870 372980 ) M2M3_PR ;
-    - io_in[10] ( PIN io_in[10] ) ( kws_accel audio_sample[10] ) + USE SIGNAL
-      + ROUTED met3 ( 2901220 2290580 ) ( 2917780 * 0 )
-      NEW met4 ( 2901220 358700 ) ( * 2290580 )
-      NEW met3 ( 408940 358700 0 ) ( 2901220 * )
-      NEW met3 ( 2901220 358700 ) M3M4_PR
-      NEW met3 ( 2901220 2290580 ) M3M4_PR ;
-    - io_in[11] ( PIN io_in[11] ) ( kws_accel audio_sample[11] ) + USE SIGNAL
-      + ROUTED met2 ( 378810 2380 ) ( * 6290 )
-      NEW met3 ( 2901910 2556460 ) ( 2917780 * 0 )
-      NEW met2 ( 2901910 6290 ) ( * 2556460 )
-      NEW met2 ( 264730 2380 ) ( * 15300 )
-      NEW met2 ( 263120 15300 0 ) ( 264730 * )
-      NEW met3 ( 264730 2380 ) ( 378810 * )
-      NEW met1 ( 378810 6290 ) ( 2901910 * )
-      NEW met2 ( 378810 2380 ) M2M3_PR
-      NEW met1 ( 378810 6290 ) M1M2_PR
-      NEW met1 ( 2901910 6290 ) M1M2_PR
-      NEW met2 ( 2901910 2556460 ) M2M3_PR
-      NEW met2 ( 264730 2380 ) M2M3_PR ;
-    - io_in[12] ( PIN io_in[12] ) ( kws_accel audio_sample[12] ) + USE SIGNAL
-      + ROUTED met3 ( 2901450 2821660 ) ( 2917780 * 0 )
-      NEW met2 ( 2901450 6630 ) ( * 2821660 )
-      NEW met2 ( 161690 3740 ) ( * 15300 )
-      NEW met2 ( 160080 15300 0 ) ( 161690 * )
-      NEW met2 ( 365930 3740 ) ( * 6630 )
-      NEW met3 ( 161690 3740 ) ( 365930 * )
-      NEW met1 ( 365930 6630 ) ( 2901450 * )
-      NEW met1 ( 2901450 6630 ) M1M2_PR
-      NEW met2 ( 2901450 2821660 ) M2M3_PR
-      NEW met2 ( 161690 3740 ) M2M3_PR
-      NEW met2 ( 365930 3740 ) M2M3_PR
-      NEW met1 ( 365930 6630 ) M1M2_PR ;
-    - io_in[13] ( PIN io_in[13] ) ( kws_accel audio_sample[13] ) + USE SIGNAL
-      + ROUTED met3 ( 47610 215900 ) ( 60260 * 0 )
-      NEW met3 ( 47610 3087540 ) ( 2917780 * 0 )
-      NEW met2 ( 47610 215900 ) ( * 3087540 )
-      NEW met2 ( 47610 215900 ) M2M3_PR
-      NEW met2 ( 47610 3087540 ) M2M3_PR ;
-    - io_in[14] ( PIN io_in[14] ) ( kws_accel audio_sample[14] ) + USE SIGNAL
-      + ROUTED met2 ( 275770 364820 ) ( 276000 * 0 )
-      NEW met2 ( 275770 364820 ) ( * 3353420 )
-      NEW met3 ( 275770 3353420 ) ( 2917780 * 0 )
-      NEW met2 ( 275770 3353420 ) M2M3_PR ;
-    - io_in[15] ( PIN io_in[15] ) ( kws_accel audio_sample[15] ) + USE SIGNAL
-      + ROUTED met2 ( 391920 364820 0 ) ( * 366180 )
-      NEW met2 ( 391920 366180 ) ( 392150 * )
-      NEW met2 ( 392150 366180 ) ( * 3502340 )
-      NEW met2 ( 2798410 3502340 ) ( * 3517980 0 )
-      NEW met3 ( 392150 3502340 ) ( 2798410 * )
-      NEW met2 ( 392150 3502340 ) M2M3_PR
-      NEW met2 ( 2798410 3502340 ) M2M3_PR ;
-    - io_in[16] ( PIN io_in[16] ) ( kws_accel sample_valid ) + USE SIGNAL
-      + ROUTED met3 ( 48070 3501660 ) ( 2474110 * )
-      NEW met3 ( 48070 324700 ) ( 60260 * 0 )
-      NEW met2 ( 48070 324700 ) ( * 3501660 )
-      NEW met2 ( 2474110 3501660 ) ( * 3517980 0 )
-      NEW met2 ( 48070 3501660 ) M2M3_PR
-      NEW met2 ( 2474110 3501660 ) M2M3_PR
-      NEW met2 ( 48070 324700 ) M2M3_PR ;
+    - io_in[0] ( PIN io_in[0] ) + USE SIGNAL ;
+    - io_in[10] ( PIN io_in[10] ) + USE SIGNAL ;
+    - io_in[11] ( PIN io_in[11] ) + USE SIGNAL ;
+    - io_in[12] ( PIN io_in[12] ) + USE SIGNAL ;
+    - io_in[13] ( PIN io_in[13] ) + USE SIGNAL ;
+    - io_in[14] ( PIN io_in[14] ) + USE SIGNAL ;
+    - io_in[15] ( PIN io_in[15] ) + USE SIGNAL ;
+    - io_in[16] ( PIN io_in[16] ) + USE SIGNAL ;
     - io_in[17] ( PIN io_in[17] ) + USE SIGNAL ;
     - io_in[18] ( PIN io_in[18] ) + USE SIGNAL ;
     - io_in[19] ( PIN io_in[19] ) + USE SIGNAL ;
-    - io_in[1] ( PIN io_in[1] ) ( kws_accel audio_sample[1] ) + USE SIGNAL
-      + ROUTED met2 ( 314640 364820 0 ) ( 316710 * )
-      NEW met2 ( 316710 364820 ) ( * 373660 )
-      NEW met2 ( 406870 231540 ) ( * 373660 )
-      NEW met3 ( 316710 373660 ) ( 406870 * )
-      NEW met3 ( 406870 231540 ) ( 2917780 * 0 )
-      NEW met2 ( 316710 373660 ) M2M3_PR
-      NEW met2 ( 406870 373660 ) M2M3_PR
-      NEW met2 ( 406870 231540 ) M2M3_PR ;
+    - io_in[1] ( PIN io_in[1] ) + USE SIGNAL ;
     - io_in[20] ( PIN io_in[20] ) + USE SIGNAL ;
     - io_in[21] ( PIN io_in[21] ) + USE SIGNAL ;
     - io_in[22] ( PIN io_in[22] ) + USE SIGNAL ;
@@ -7822,12 +7757,7 @@ NETS 637 ;
     - io_in[27] ( PIN io_in[27] ) + USE SIGNAL ;
     - io_in[28] ( PIN io_in[28] ) + USE SIGNAL ;
     - io_in[29] ( PIN io_in[29] ) + USE SIGNAL ;
-    - io_in[2] ( PIN io_in[2] ) ( kws_accel audio_sample[2] ) + USE SIGNAL
-      + ROUTED met3 ( 43700 39100 ) ( 60260 * 0 )
-      NEW met4 ( 43700 39100 ) ( * 430780 )
-      NEW met3 ( 43700 430780 ) ( 2917780 * 0 )
-      NEW met3 ( 43700 39100 ) M3M4_PR
-      NEW met3 ( 43700 430780 ) M3M4_PR ;
+    - io_in[2] ( PIN io_in[2] ) + USE SIGNAL ;
     - io_in[30] ( PIN io_in[30] ) + USE SIGNAL ;
     - io_in[31] ( PIN io_in[31] ) + USE SIGNAL ;
     - io_in[32] ( PIN io_in[32] ) + USE SIGNAL ;
@@ -7836,58 +7766,13 @@ NETS 637 ;
     - io_in[35] ( PIN io_in[35] ) + USE SIGNAL ;
     - io_in[36] ( PIN io_in[36] ) + USE SIGNAL ;
     - io_in[37] ( PIN io_in[37] ) + USE SIGNAL ;
-    - io_in[3] ( PIN io_in[3] ) ( kws_accel audio_sample[3] ) + USE SIGNAL
-      + ROUTED met2 ( 237360 364820 0 ) ( * 366180 )
-      NEW met2 ( 237360 366180 ) ( 237590 * )
-      NEW met2 ( 237590 366180 ) ( * 630020 )
-      NEW met3 ( 237590 630020 ) ( 2917780 * 0 )
-      NEW met2 ( 237590 630020 ) M2M3_PR ;
-    - io_in[4] ( PIN io_in[4] ) ( kws_accel audio_sample[4] ) + USE SIGNAL
-      + ROUTED met2 ( 379270 3740 ) ( * 13940 )
-      NEW met2 ( 379040 13940 ) ( 379270 * )
-      NEW met2 ( 379040 13940 ) ( * 15300 0 )
-      NEW met3 ( 2904210 829260 ) ( 2917780 * 0 )
-      NEW met2 ( 2904210 3740 ) ( * 829260 )
-      NEW met3 ( 379270 3740 ) ( 2904210 * )
-      NEW met2 ( 379270 3740 ) M2M3_PR
-      NEW met2 ( 2904210 3740 ) M2M3_PR
-      NEW met2 ( 2904210 829260 ) M2M3_PR ;
-    - io_in[5] ( PIN io_in[5] ) ( kws_accel audio_sample[5] ) + USE SIGNAL
-      + ROUTED met3 ( 2903060 1028500 ) ( 2917780 * 0 )
-      NEW met4 ( 2903060 209100 ) ( * 1028500 )
-      NEW met3 ( 408940 209100 0 ) ( 2903060 * )
-      NEW met3 ( 2903060 209100 ) M3M4_PR
-      NEW met3 ( 2903060 1028500 ) M3M4_PR ;
-    - io_in[6] ( PIN io_in[6] ) ( kws_accel audio_sample[6] ) + USE SIGNAL
-      + ROUTED met3 ( 2903290 1227740 ) ( 2917780 * 0 )
-      NEW met2 ( 2903290 6460 ) ( * 1227740 )
-      NEW met2 ( 135930 6460 ) ( * 15300 )
-      NEW met2 ( 134320 15300 0 ) ( 135930 * )
-      NEW met3 ( 135930 6460 ) ( 2903290 * )
-      NEW met2 ( 2903290 6460 ) M2M3_PR
-      NEW met2 ( 2903290 1227740 ) M2M3_PR
-      NEW met2 ( 135930 6460 ) M2M3_PR ;
-    - io_in[7] ( PIN io_in[7] ) ( kws_accel audio_sample[7] ) + USE SIGNAL
-      + ROUTED met3 ( 47150 283900 ) ( 60260 * 0 )
-      NEW met2 ( 47150 283900 ) ( * 1493620 )
-      NEW met3 ( 47150 1493620 ) ( 2917780 * 0 )
-      NEW met2 ( 47150 283900 ) M2M3_PR
-      NEW met2 ( 47150 1493620 ) M2M3_PR ;
-    - io_in[8] ( PIN io_in[8] ) ( kws_accel audio_sample[8] ) + USE SIGNAL
-      + ROUTED met2 ( 301760 364820 0 ) ( * 366180 )
-      NEW met2 ( 301760 366180 ) ( 301990 * )
-      NEW met2 ( 301990 366180 ) ( * 1759500 )
-      NEW met3 ( 301990 1759500 ) ( 2917780 * 0 )
-      NEW met2 ( 301990 1759500 ) M2M3_PR ;
-    - io_in[9] ( PIN io_in[9] ) ( kws_accel audio_sample[9] ) + USE SIGNAL
-      + ROUTED met3 ( 2902370 2024700 ) ( 2917780 * 0 )
-      NEW met2 ( 2902370 4420 ) ( * 2024700 )
-      NEW met2 ( 367770 4420 ) ( * 15300 )
-      NEW met2 ( 366160 15300 0 ) ( 367770 * )
-      NEW met3 ( 367770 4420 ) ( 2902370 * )
-      NEW met2 ( 2902370 4420 ) M2M3_PR
-      NEW met2 ( 2902370 2024700 ) M2M3_PR
-      NEW met2 ( 367770 4420 ) M2M3_PR ;
+    - io_in[3] ( PIN io_in[3] ) + USE SIGNAL ;
+    - io_in[4] ( PIN io_in[4] ) + USE SIGNAL ;
+    - io_in[5] ( PIN io_in[5] ) + USE SIGNAL ;
+    - io_in[6] ( PIN io_in[6] ) + USE SIGNAL ;
+    - io_in[7] ( PIN io_in[7] ) + USE SIGNAL ;
+    - io_in[8] ( PIN io_in[8] ) + USE SIGNAL ;
+    - io_in[9] ( PIN io_in[9] ) + USE SIGNAL ;
     - io_oeb[0] ( PIN io_oeb[0] ) + USE SIGNAL ;
     - io_oeb[10] ( PIN io_oeb[10] ) + USE SIGNAL ;
     - io_oeb[11] ( PIN io_oeb[11] ) + USE SIGNAL ;
@@ -7926,18 +7811,8 @@ NETS 637 ;
     - io_oeb[7] ( PIN io_oeb[7] ) + USE SIGNAL ;
     - io_oeb[8] ( PIN io_oeb[8] ) + USE SIGNAL ;
     - io_oeb[9] ( PIN io_oeb[9] ) + USE SIGNAL ;
-    - io_out[0] ( PIN io_out[0] ) ( kws_accel done ) + USE SIGNAL
-      + ROUTED met3 ( 408940 317900 0 ) ( 423660 * )
-      NEW met3 ( 423660 98940 ) ( 2917780 * 0 )
-      NEW met4 ( 423660 98940 ) ( * 317900 )
-      NEW met3 ( 423660 98940 ) M3M4_PR
-      NEW met3 ( 423660 317900 ) M3M4_PR ;
-    - io_out[10] ( PIN io_out[10] ) ( kws_accel psram_douten[3] ) + USE SIGNAL
-      + ROUTED met2 ( 134320 364820 0 ) ( * 366180 )
-      NEW met2 ( 134320 366180 ) ( 134550 * )
-      NEW met2 ( 134550 366180 ) ( * 2357220 )
-      NEW met3 ( 134550 2357220 ) ( 2917780 * 0 )
-      NEW met2 ( 134550 2357220 ) M2M3_PR ;
+    - io_out[0] ( PIN io_out[0] ) + USE SIGNAL ;
+    - io_out[10] ( PIN io_out[10] ) + USE SIGNAL ;
     - io_out[11] ( PIN io_out[11] ) + USE SIGNAL ;
     - io_out[12] ( PIN io_out[12] ) + USE SIGNAL ;
     - io_out[13] ( PIN io_out[13] ) + USE SIGNAL ;
@@ -7947,15 +7822,7 @@ NETS 637 ;
     - io_out[17] ( PIN io_out[17] ) + USE SIGNAL ;
     - io_out[18] ( PIN io_out[18] ) + USE SIGNAL ;
     - io_out[19] ( PIN io_out[19] ) + USE SIGNAL ;
-    - io_out[1] ( PIN io_out[1] ) ( kws_accel psram_sck ) + USE SIGNAL
-      + ROUTED met2 ( 303370 5100 ) ( * 15300 )
-      NEW met2 ( 301760 15300 0 ) ( 303370 * )
-      NEW met3 ( 2900070 298180 ) ( 2917780 * 0 )
-      NEW met2 ( 2900070 5100 ) ( * 298180 )
-      NEW met3 ( 303370 5100 ) ( 2900070 * )
-      NEW met2 ( 303370 5100 ) M2M3_PR
-      NEW met2 ( 2900070 5100 ) M2M3_PR
-      NEW met2 ( 2900070 298180 ) M2M3_PR ;
+    - io_out[1] ( PIN io_out[1] ) + USE SIGNAL ;
     - io_out[20] ( PIN io_out[20] ) + USE SIGNAL ;
     - io_out[21] ( PIN io_out[21] ) + USE SIGNAL ;
     - io_out[22] ( PIN io_out[22] ) + USE SIGNAL ;
@@ -7966,19 +7833,7 @@ NETS 637 ;
     - io_out[27] ( PIN io_out[27] ) + USE SIGNAL ;
     - io_out[28] ( PIN io_out[28] ) + USE SIGNAL ;
     - io_out[29] ( PIN io_out[29] ) + USE SIGNAL ;
-    - io_out[2] ( PIN io_out[2] ) ( kws_accel psram_ce_n ) + USE SIGNAL
-      + ROUTED met2 ( 123050 1700 ) ( * 15300 )
-      NEW met2 ( 121440 15300 0 ) ( 123050 * )
-      NEW met2 ( 406870 1700 ) ( * 24140 )
-      NEW met3 ( 2902830 497420 ) ( 2917780 * 0 )
-      NEW met2 ( 2902830 24140 ) ( * 497420 )
-      NEW met3 ( 123050 1700 ) ( 406870 * )
-      NEW met3 ( 406870 24140 ) ( 2902830 * )
-      NEW met2 ( 123050 1700 ) M2M3_PR
-      NEW met2 ( 406870 1700 ) M2M3_PR
-      NEW met2 ( 406870 24140 ) M2M3_PR
-      NEW met2 ( 2902830 24140 ) M2M3_PR
-      NEW met2 ( 2902830 497420 ) M2M3_PR ;
+    - io_out[2] ( PIN io_out[2] ) + USE SIGNAL ;
     - io_out[30] ( PIN io_out[30] ) + USE SIGNAL ;
     - io_out[31] ( PIN io_out[31] ) + USE SIGNAL ;
     - io_out[32] ( PIN io_out[32] ) + USE SIGNAL ;
@@ -7987,54 +7842,17 @@ NETS 637 ;
     - io_out[35] ( PIN io_out[35] ) + USE SIGNAL ;
     - io_out[36] ( PIN io_out[36] ) + USE SIGNAL ;
     - io_out[37] ( PIN io_out[37] ) + USE SIGNAL ;
-    - io_out[3] ( PIN io_out[3] ) ( kws_accel psram_d[0] ) + USE SIGNAL
-      + ROUTED met3 ( 2900990 696660 ) ( 2917780 * 0 )
-      NEW met2 ( 2900990 5780 ) ( * 696660 )
-      NEW met2 ( 174570 5780 ) ( * 15300 )
-      NEW met2 ( 172960 15300 0 ) ( 174570 * )
-      NEW met3 ( 174570 5780 ) ( 2900990 * )
-      NEW met2 ( 2900990 5780 ) M2M3_PR
-      NEW met2 ( 2900990 696660 ) M2M3_PR
-      NEW met2 ( 174570 5780 ) M2M3_PR ;
-    - io_out[4] ( PIN io_out[4] ) ( kws_accel psram_d[1] ) + USE SIGNAL
-      + ROUTED met3 ( 44620 895900 ) ( 2917780 * 0 )
-      NEW met3 ( 44620 134300 ) ( 60260 * 0 )
-      NEW met4 ( 44620 134300 ) ( * 895900 )
-      NEW met3 ( 44620 895900 ) M3M4_PR
-      NEW met3 ( 44620 134300 ) M3M4_PR ;
-    - io_out[5] ( PIN io_out[5] ) ( kws_accel psram_d[2] ) + USE SIGNAL
-      + ROUTED met3 ( 2902140 1095140 ) ( 2917780 * 0 )
-      NEW met4 ( 2902140 222700 ) ( * 1095140 )
-      NEW met3 ( 408940 222700 0 ) ( 2902140 * )
-      NEW met3 ( 2902140 222700 ) M3M4_PR
-      NEW met3 ( 2902140 1095140 ) M3M4_PR ;
-    - io_out[6] ( PIN io_out[6] ) ( kws_accel psram_d[3] ) + USE SIGNAL
-      + ROUTED met2 ( 410550 3060 ) ( * 1294380 )
-      NEW met2 ( 251850 3060 ) ( * 15300 )
-      NEW met2 ( 250240 15300 0 ) ( 251850 * )
-      NEW met3 ( 251850 3060 ) ( 410550 * )
-      NEW met3 ( 410550 1294380 ) ( 2917780 * 0 )
-      NEW met2 ( 410550 3060 ) M2M3_PR
-      NEW met2 ( 410550 1294380 ) M2M3_PR
-      NEW met2 ( 251850 3060 ) M2M3_PR ;
-    - io_out[7] ( PIN io_out[7] ) ( kws_accel psram_douten[0] ) + USE SIGNAL
-      + ROUTED met3 ( 340630 1560260 ) ( 2917780 * 0 )
-      NEW met2 ( 340400 364820 0 ) ( * 366180 )
-      NEW met2 ( 340400 366180 ) ( 340630 * )
-      NEW met2 ( 340630 366180 ) ( * 1560260 )
-      NEW met2 ( 340630 1560260 ) M2M3_PR ;
-    - io_out[8] ( PIN io_out[8] ) ( kws_accel psram_douten[1] ) + USE SIGNAL
-      + ROUTED met3 ( 327750 1825460 ) ( 2917780 * 0 )
-      NEW met2 ( 327520 364820 0 ) ( * 366180 )
-      NEW met2 ( 327520 366180 ) ( 327750 * )
-      NEW met2 ( 327750 366180 ) ( * 1825460 )
-      NEW met2 ( 327750 1825460 ) M2M3_PR ;
-    - io_out[9] ( PIN io_out[9] ) ( kws_accel psram_douten[2] ) + USE SIGNAL
-      + ROUTED met2 ( 82570 364820 ) ( 82800 * 0 )
-      NEW met2 ( 82570 364820 ) ( * 2091340 )
-      NEW met3 ( 82570 2091340 ) ( 2917780 * 0 )
-      NEW met2 ( 82570 2091340 ) M2M3_PR ;
-    - la_data_in[0] ( PIN la_data_in[0] ) + USE SIGNAL ;
+    - io_out[3] ( PIN io_out[3] ) + USE SIGNAL ;
+    - io_out[4] ( PIN io_out[4] ) + USE SIGNAL ;
+    - io_out[5] ( PIN io_out[5] ) + USE SIGNAL ;
+    - io_out[6] ( PIN io_out[6] ) + USE SIGNAL ;
+    - io_out[7] ( PIN io_out[7] ) + USE SIGNAL ;
+    - io_out[8] ( PIN io_out[8] ) + USE SIGNAL ;
+    - io_out[9] ( PIN io_out[9] ) + USE SIGNAL ;
+    - la_data_in[0] ( PIN la_data_in[0] ) ( kws_accel audio_sample[0] ) + USE SIGNAL
+      + ROUTED met3 ( 408940 246500 0 ) ( 629510 * )
+      NEW met2 ( 629510 1700 0 ) ( * 246500 )
+      NEW met2 ( 629510 246500 ) M2M3_PR ;
     - la_data_in[100] ( PIN la_data_in[100] ) + USE SIGNAL ;
     - la_data_in[101] ( PIN la_data_in[101] ) + USE SIGNAL ;
     - la_data_in[102] ( PIN la_data_in[102] ) + USE SIGNAL ;
@@ -8045,7 +7863,16 @@ NETS 637 ;
     - la_data_in[107] ( PIN la_data_in[107] ) + USE SIGNAL ;
     - la_data_in[108] ( PIN la_data_in[108] ) + USE SIGNAL ;
     - la_data_in[109] ( PIN la_data_in[109] ) + USE SIGNAL ;
-    - la_data_in[10] ( PIN la_data_in[10] ) + USE SIGNAL ;
+    - la_data_in[10] ( PIN la_data_in[10] ) ( kws_accel audio_sample[10] ) + USE SIGNAL
+      + ROUTED met2 ( 806610 1700 0 ) ( * 3060 )
+      NEW met2 ( 234370 1020 ) ( * 13940 )
+      NEW met2 ( 234140 13940 ) ( 234370 * )
+      NEW met2 ( 234140 13940 ) ( * 15300 0 )
+      NEW met3 ( 759000 3060 ) ( 806610 * )
+      NEW met3 ( 759000 1020 ) ( * 3060 )
+      NEW met3 ( 234370 1020 ) ( 759000 * )
+      NEW met2 ( 806610 3060 ) M2M3_PR
+      NEW met2 ( 234370 1020 ) M2M3_PR ;
     - la_data_in[110] ( PIN la_data_in[110] ) + USE SIGNAL ;
     - la_data_in[111] ( PIN la_data_in[111] ) + USE SIGNAL ;
     - la_data_in[112] ( PIN la_data_in[112] ) + USE SIGNAL ;
@@ -8056,7 +7883,14 @@ NETS 637 ;
     - la_data_in[117] ( PIN la_data_in[117] ) + USE SIGNAL ;
     - la_data_in[118] ( PIN la_data_in[118] ) + USE SIGNAL ;
     - la_data_in[119] ( PIN la_data_in[119] ) + USE SIGNAL ;
-    - la_data_in[11] ( PIN la_data_in[11] ) + USE SIGNAL ;
+    - la_data_in[11] ( PIN la_data_in[11] ) ( kws_accel audio_sample[11] ) + USE SIGNAL
+      + ROUTED met3 ( 47610 294100 ) ( 60260 * 0 )
+      NEW met2 ( 824550 1700 0 ) ( * 11220 )
+      NEW met3 ( 47610 11220 ) ( 824550 * )
+      NEW met2 ( 47610 11220 ) ( * 294100 )
+      NEW met2 ( 47610 11220 ) M2M3_PR
+      NEW met2 ( 47610 294100 ) M2M3_PR
+      NEW met2 ( 824550 11220 ) M2M3_PR ;
     - la_data_in[120] ( PIN la_data_in[120] ) + USE SIGNAL ;
     - la_data_in[121] ( PIN la_data_in[121] ) + USE SIGNAL ;
     - la_data_in[122] ( PIN la_data_in[122] ) + USE SIGNAL ;
@@ -8065,15 +7899,70 @@ NETS 637 ;
     - la_data_in[125] ( PIN la_data_in[125] ) + USE SIGNAL ;
     - la_data_in[126] ( PIN la_data_in[126] ) + USE SIGNAL ;
     - la_data_in[127] ( PIN la_data_in[127] ) + USE SIGNAL ;
-    - la_data_in[12] ( PIN la_data_in[12] ) + USE SIGNAL ;
-    - la_data_in[13] ( PIN la_data_in[13] ) + USE SIGNAL ;
-    - la_data_in[14] ( PIN la_data_in[14] ) + USE SIGNAL ;
-    - la_data_in[15] ( PIN la_data_in[15] ) + USE SIGNAL ;
-    - la_data_in[16] ( PIN la_data_in[16] ) + USE SIGNAL ;
+    - la_data_in[12] ( PIN la_data_in[12] ) ( kws_accel audio_sample[12] ) + USE SIGNAL
+      + ROUTED met3 ( 408940 202300 0 ) ( 721970 * )
+      NEW met2 ( 842030 1700 0 ) ( * 18700 )
+      NEW met3 ( 721970 18700 ) ( 842030 * )
+      NEW met2 ( 721970 18700 ) ( * 202300 )
+      NEW met2 ( 721970 18700 ) M2M3_PR
+      NEW met2 ( 721970 202300 ) M2M3_PR
+      NEW met2 ( 842030 18700 ) M2M3_PR ;
+    - la_data_in[13] ( PIN la_data_in[13] ) ( kws_accel audio_sample[13] ) + USE SIGNAL
+      + ROUTED met2 ( 859970 1700 0 ) ( * 18020 )
+      NEW met2 ( 298540 364820 0 ) ( 300610 * )
+      NEW met2 ( 300610 364820 ) ( * 374340 )
+      NEW met3 ( 300610 374340 ) ( 721050 * )
+      NEW met3 ( 721050 18020 ) ( 859970 * )
+      NEW met2 ( 721050 18020 ) ( * 374340 )
+      NEW met2 ( 300610 374340 ) M2M3_PR
+      NEW met2 ( 859970 18020 ) M2M3_PR
+      NEW met2 ( 721050 18020 ) M2M3_PR
+      NEW met2 ( 721050 374340 ) M2M3_PR ;
+    - la_data_in[14] ( PIN la_data_in[14] ) ( kws_accel audio_sample[14] ) + USE SIGNAL
+      + ROUTED met2 ( 324070 5780 ) ( * 13940 )
+      NEW met2 ( 704030 5780 ) ( * 13940 )
+      NEW met2 ( 877450 1700 0 ) ( * 13940 )
+      NEW met2 ( 324070 13940 ) ( 324300 * )
+      NEW met2 ( 324300 13940 ) ( * 15300 0 )
+      NEW met3 ( 324070 5780 ) ( 704030 * )
+      NEW met3 ( 704030 13940 ) ( 877450 * )
+      NEW met2 ( 324070 5780 ) M2M3_PR
+      NEW met2 ( 704030 5780 ) M2M3_PR
+      NEW met2 ( 704030 13940 ) M2M3_PR
+      NEW met2 ( 877450 13940 ) M2M3_PR ;
+    - la_data_in[15] ( PIN la_data_in[15] ) ( kws_accel audio_sample[15] ) + USE SIGNAL
+      + ROUTED met2 ( 895390 1700 0 ) ( * 10540 )
+      NEW met3 ( 48070 10540 ) ( 895390 * )
+      NEW met3 ( 48070 59500 ) ( 60260 * 0 )
+      NEW met2 ( 48070 10540 ) ( * 59500 )
+      NEW met2 ( 895390 10540 ) M2M3_PR
+      NEW met2 ( 48070 10540 ) M2M3_PR
+      NEW met2 ( 48070 59500 ) M2M3_PR ;
+    - la_data_in[16] ( PIN la_data_in[16] ) ( kws_accel sample_valid ) + USE SIGNAL
+      + ROUTED met2 ( 344770 13940 ) ( * 14110 )
+      NEW met3 ( 79580 13940 ) ( 344770 * )
+      NEW met2 ( 912870 1700 0 ) ( * 14110 )
+      NEW met1 ( 344770 14110 ) ( 912870 * )
+      NEW met4 ( 79580 13940 ) ( * 361420 )
+      NEW met3 ( 79580 13940 ) M3M4_PR
+      NEW met2 ( 344770 13940 ) M2M3_PR
+      NEW met1 ( 344770 14110 ) M1M2_PR
+      NEW met1 ( 912870 14110 ) M1M2_PR
+      NEW met2 ( 79580 361420 ) M2M3_PR
+      NEW met3 ( 79580 361420 ) M3M4_PR
+      NEW met3 ( 79580 361420 ) RECT ( -600 -150 0 150 )  ;
     - la_data_in[17] ( PIN la_data_in[17] ) + USE SIGNAL ;
     - la_data_in[18] ( PIN la_data_in[18] ) + USE SIGNAL ;
     - la_data_in[19] ( PIN la_data_in[19] ) + USE SIGNAL ;
-    - la_data_in[1] ( PIN la_data_in[1] ) + USE SIGNAL ;
+    - la_data_in[1] ( PIN la_data_in[1] ) ( kws_accel start ) ( kws_accel audio_sample[1] ) + USE SIGNAL
+      + ROUTED met3 ( 408940 341700 0 ) ( 421130 * )
+      NEW met2 ( 421130 154700 ) ( * 341700 )
+      NEW met3 ( 408940 154700 0 ) ( 646990 * )
+      NEW met2 ( 646990 1700 0 ) ( * 154700 )
+      NEW met2 ( 421130 154700 ) M2M3_PR
+      NEW met2 ( 421130 341700 ) M2M3_PR
+      NEW met2 ( 646990 154700 ) M2M3_PR
+      NEW met3 ( 421130 154700 ) RECT ( 0 -150 620 150 )  ;
     - la_data_in[20] ( PIN la_data_in[20] ) + USE SIGNAL ;
     - la_data_in[21] ( PIN la_data_in[21] ) + USE SIGNAL ;
     - la_data_in[22] ( PIN la_data_in[22] ) + USE SIGNAL ;
@@ -8084,7 +7973,19 @@ NETS 637 ;
     - la_data_in[27] ( PIN la_data_in[27] ) + USE SIGNAL ;
     - la_data_in[28] ( PIN la_data_in[28] ) + USE SIGNAL ;
     - la_data_in[29] ( PIN la_data_in[29] ) + USE SIGNAL ;
-    - la_data_in[2] ( PIN la_data_in[2] ) + USE SIGNAL ;
+    - la_data_in[2] ( PIN la_data_in[2] ) ( kws_accel audio_sample[2] ) + USE SIGNAL
+      + ROUTED met2 ( 664930 1700 0 ) ( * 13940 )
+      NEW met3 ( 344540 14620 ) ( 372600 * )
+      NEW met3 ( 372600 13940 ) ( * 14620 )
+      NEW met3 ( 372600 13940 ) ( 664930 * )
+      NEW met4 ( 344540 14620 ) ( * 324300 )
+      NEW met4 ( 343620 324300 ) ( 344540 * )
+      NEW met4 ( 343620 324300 ) ( * 361420 )
+      NEW met2 ( 664930 13940 ) M2M3_PR
+      NEW met3 ( 344540 14620 ) M3M4_PR
+      NEW met2 ( 343620 361420 ) M2M3_PR
+      NEW met3 ( 343620 361420 ) M3M4_PR
+      NEW met3 ( 343620 361420 ) RECT ( -600 -150 0 150 )  ;
     - la_data_in[30] ( PIN la_data_in[30] ) + USE SIGNAL ;
     - la_data_in[31] ( PIN la_data_in[31] ) + USE SIGNAL ;
     - la_data_in[32] ( PIN la_data_in[32] ) + USE SIGNAL ;
@@ -8095,7 +7996,16 @@ NETS 637 ;
     - la_data_in[37] ( PIN la_data_in[37] ) + USE SIGNAL ;
     - la_data_in[38] ( PIN la_data_in[38] ) + USE SIGNAL ;
     - la_data_in[39] ( PIN la_data_in[39] ) + USE SIGNAL ;
-    - la_data_in[3] ( PIN la_data_in[3] ) + USE SIGNAL ;
+    - la_data_in[3] ( PIN la_data_in[3] ) ( kws_accel audio_sample[3] ) + USE SIGNAL
+      + ROUTED met2 ( 682410 1700 0 ) ( * 18700 )
+      NEW met3 ( 408940 107100 0 ) ( 424350 * )
+      NEW met3 ( 424350 18020 ) ( 614100 * )
+      NEW met3 ( 614100 18020 ) ( * 18700 )
+      NEW met3 ( 614100 18700 ) ( 682410 * )
+      NEW met2 ( 424350 18020 ) ( * 107100 )
+      NEW met2 ( 682410 18700 ) M2M3_PR
+      NEW met2 ( 424350 18020 ) M2M3_PR
+      NEW met2 ( 424350 107100 ) M2M3_PR ;
     - la_data_in[40] ( PIN la_data_in[40] ) + USE SIGNAL ;
     - la_data_in[41] ( PIN la_data_in[41] ) + USE SIGNAL ;
     - la_data_in[42] ( PIN la_data_in[42] ) + USE SIGNAL ;
@@ -8106,7 +8016,18 @@ NETS 637 ;
     - la_data_in[47] ( PIN la_data_in[47] ) + USE SIGNAL ;
     - la_data_in[48] ( PIN la_data_in[48] ) + USE SIGNAL ;
     - la_data_in[49] ( PIN la_data_in[49] ) + USE SIGNAL ;
-    - la_data_in[4] ( PIN la_data_in[4] ) + USE SIGNAL ;
+    - la_data_in[4] ( PIN la_data_in[4] ) ( kws_accel audio_sample[4] ) + USE SIGNAL
+      + ROUTED met2 ( 698510 340 ) ( * 510 )
+      NEW met2 ( 698510 340 ) ( 700350 * 0 )
+      NEW met2 ( 61870 4420 ) ( * 15300 )
+      NEW met2 ( 60260 15300 0 ) ( 61870 * )
+      NEW met2 ( 365930 510 ) ( * 4420 )
+      NEW met3 ( 61870 4420 ) ( 365930 * )
+      NEW met1 ( 365930 510 ) ( 698510 * )
+      NEW met1 ( 698510 510 ) M1M2_PR
+      NEW met2 ( 61870 4420 ) M2M3_PR
+      NEW met2 ( 365930 4420 ) M2M3_PR
+      NEW met1 ( 365930 510 ) M1M2_PR ;
     - la_data_in[50] ( PIN la_data_in[50] ) + USE SIGNAL ;
     - la_data_in[51] ( PIN la_data_in[51] ) + USE SIGNAL ;
     - la_data_in[52] ( PIN la_data_in[52] ) + USE SIGNAL ;
@@ -8117,7 +8038,15 @@ NETS 637 ;
     - la_data_in[57] ( PIN la_data_in[57] ) + USE SIGNAL ;
     - la_data_in[58] ( PIN la_data_in[58] ) + USE SIGNAL ;
     - la_data_in[59] ( PIN la_data_in[59] ) + USE SIGNAL ;
-    - la_data_in[5] ( PIN la_data_in[5] ) + USE SIGNAL ;
+    - la_data_in[5] ( PIN la_data_in[5] ) ( kws_accel audio_sample[5] ) + USE SIGNAL
+      + ROUTED met2 ( 366390 2380 ) ( * 13940 )
+      NEW met2 ( 366160 13940 ) ( 366390 * )
+      NEW met2 ( 366160 13940 ) ( * 15300 0 )
+      NEW met2 ( 715990 1700 ) ( 717830 * 0 )
+      NEW met2 ( 715990 1700 ) ( * 2380 )
+      NEW met3 ( 366390 2380 ) ( 715990 * )
+      NEW met2 ( 366390 2380 ) M2M3_PR
+      NEW met2 ( 715990 2380 ) M2M3_PR ;
     - la_data_in[60] ( PIN la_data_in[60] ) + USE SIGNAL ;
     - la_data_in[61] ( PIN la_data_in[61] ) + USE SIGNAL ;
     - la_data_in[62] ( PIN la_data_in[62] ) + USE SIGNAL ;
@@ -8128,7 +8057,19 @@ NETS 637 ;
     - la_data_in[67] ( PIN la_data_in[67] ) + USE SIGNAL ;
     - la_data_in[68] ( PIN la_data_in[68] ) + USE SIGNAL ;
     - la_data_in[69] ( PIN la_data_in[69] ) + USE SIGNAL ;
-    - la_data_in[6] ( PIN la_data_in[6] ) + USE SIGNAL ;
+    - la_data_in[6] ( PIN la_data_in[6] ) ( kws_accel audio_sample[6] ) + USE SIGNAL
+      + ROUTED met2 ( 410550 17340 ) ( * 324300 )
+      NEW met2 ( 409170 324300 ) ( 410550 * )
+      NEW met2 ( 409170 324300 ) ( * 361930 )
+      NEW met1 ( 390310 361930 ) ( 409170 * )
+      NEW met2 ( 390310 361930 ) ( * 362100 )
+      NEW met2 ( 388700 362100 0 ) ( 390310 * )
+      NEW met2 ( 735770 1700 0 ) ( * 17340 )
+      NEW met3 ( 410550 17340 ) ( 735770 * )
+      NEW met2 ( 410550 17340 ) M2M3_PR
+      NEW met1 ( 409170 361930 ) M1M2_PR
+      NEW met1 ( 390310 361930 ) M1M2_PR
+      NEW met2 ( 735770 17340 ) M2M3_PR ;
     - la_data_in[70] ( PIN la_data_in[70] ) + USE SIGNAL ;
     - la_data_in[71] ( PIN la_data_in[71] ) + USE SIGNAL ;
     - la_data_in[72] ( PIN la_data_in[72] ) + USE SIGNAL ;
@@ -8139,7 +8080,14 @@ NETS 637 ;
     - la_data_in[77] ( PIN la_data_in[77] ) + USE SIGNAL ;
     - la_data_in[78] ( PIN la_data_in[78] ) + USE SIGNAL ;
     - la_data_in[79] ( PIN la_data_in[79] ) + USE SIGNAL ;
-    - la_data_in[7] ( PIN la_data_in[7] ) + USE SIGNAL ;
+    - la_data_in[7] ( PIN la_data_in[7] ) ( kws_accel audio_sample[7] ) + USE SIGNAL
+      + ROUTED met2 ( 147430 340 ) ( * 13940 )
+      NEW met2 ( 147200 13940 ) ( 147430 * )
+      NEW met2 ( 147200 13940 ) ( * 15300 0 )
+      NEW met2 ( 753250 340 0 ) ( 754170 * )
+      NEW met3 ( 147430 340 ) ( 754170 * )
+      NEW met2 ( 147430 340 ) M2M3_PR
+      NEW met2 ( 754170 340 ) M2M3_PR ;
     - la_data_in[80] ( PIN la_data_in[80] ) + USE SIGNAL ;
     - la_data_in[81] ( PIN la_data_in[81] ) + USE SIGNAL ;
     - la_data_in[82] ( PIN la_data_in[82] ) + USE SIGNAL ;
@@ -8150,7 +8098,26 @@ NETS 637 ;
     - la_data_in[87] ( PIN la_data_in[87] ) + USE SIGNAL ;
     - la_data_in[88] ( PIN la_data_in[88] ) + USE SIGNAL ;
     - la_data_in[89] ( PIN la_data_in[89] ) + USE SIGNAL ;
-    - la_data_in[8] ( PIN la_data_in[8] ) + USE SIGNAL ;
+    - la_data_in[8] ( PIN la_data_in[8] ) ( kws_accel audio_sample[8] ) + USE SIGNAL
+      + ROUTED met3 ( 403420 14620 ) ( 405490 * )
+      NEW met2 ( 405490 14620 ) ( * 20060 )
+      NEW met2 ( 405490 20060 ) ( 406870 * )
+      NEW met2 ( 771190 1700 0 ) ( * 14450 )
+      NEW met4 ( 403420 14620 ) ( * 375020 )
+      NEW met3 ( 168130 375020 ) ( 403420 * )
+      NEW met2 ( 724270 14450 ) ( * 20060 )
+      NEW met3 ( 406870 20060 ) ( 724270 * )
+      NEW met1 ( 724270 14450 ) ( 771190 * )
+      NEW met2 ( 166520 364820 0 ) ( 168130 * )
+      NEW met2 ( 168130 364820 ) ( * 375020 )
+      NEW met3 ( 403420 14620 ) M3M4_PR
+      NEW met2 ( 405490 14620 ) M2M3_PR
+      NEW met2 ( 406870 20060 ) M2M3_PR
+      NEW met3 ( 403420 375020 ) M3M4_PR
+      NEW met1 ( 771190 14450 ) M1M2_PR
+      NEW met2 ( 168130 375020 ) M2M3_PR
+      NEW met2 ( 724270 20060 ) M2M3_PR
+      NEW met1 ( 724270 14450 ) M1M2_PR ;
     - la_data_in[90] ( PIN la_data_in[90] ) + USE SIGNAL ;
     - la_data_in[91] ( PIN la_data_in[91] ) + USE SIGNAL ;
     - la_data_in[92] ( PIN la_data_in[92] ) + USE SIGNAL ;
@@ -8161,8 +8128,18 @@ NETS 637 ;
     - la_data_in[97] ( PIN la_data_in[97] ) + USE SIGNAL ;
     - la_data_in[98] ( PIN la_data_in[98] ) + USE SIGNAL ;
     - la_data_in[99] ( PIN la_data_in[99] ) + USE SIGNAL ;
-    - la_data_in[9] ( PIN la_data_in[9] ) + USE SIGNAL ;
-    - la_data_out[0] ( PIN la_data_out[0] ) + USE SIGNAL ;
+    - la_data_in[9] ( PIN la_data_in[9] ) ( kws_accel audio_sample[9] ) + USE SIGNAL
+      + ROUTED met2 ( 789130 1700 0 ) ( * 11900 )
+      NEW met3 ( 46690 11900 ) ( 789130 * )
+      NEW met3 ( 46690 154700 ) ( 60260 * 0 )
+      NEW met2 ( 46690 11900 ) ( * 154700 )
+      NEW met2 ( 789130 11900 ) M2M3_PR
+      NEW met2 ( 46690 11900 ) M2M3_PR
+      NEW met2 ( 46690 154700 ) M2M3_PR ;
+    - la_data_out[0] ( PIN la_data_out[0] ) ( kws_accel done ) + USE SIGNAL
+      + ROUTED met2 ( 635030 1700 0 ) ( * 15300 )
+      NEW met3 ( 408940 15300 0 ) ( 635030 * )
+      NEW met2 ( 635030 15300 ) M2M3_PR ;
     - la_data_out[100] ( PIN la_data_out[100] ) + USE SIGNAL ;
     - la_data_out[101] ( PIN la_data_out[101] ) + USE SIGNAL ;
     - la_data_out[102] ( PIN la_data_out[102] ) + USE SIGNAL ;
@@ -8173,7 +8150,21 @@ NETS 637 ;
     - la_data_out[107] ( PIN la_data_out[107] ) + USE SIGNAL ;
     - la_data_out[108] ( PIN la_data_out[108] ) + USE SIGNAL ;
     - la_data_out[109] ( PIN la_data_out[109] ) + USE SIGNAL ;
-    - la_data_out[10] ( PIN la_data_out[10] ) + USE SIGNAL ;
+    - la_data_out[10] ( PIN la_data_out[10] ) ( kws_accel psram_douten[3] ) + USE SIGNAL
+      + ROUTED met2 ( 406870 20740 ) ( 407330 * )
+      NEW met2 ( 407330 19380 ) ( * 20740 )
+      NEW met2 ( 406870 19380 ) ( 407330 * )
+      NEW met2 ( 406870 16660 ) ( * 19380 )
+      NEW met2 ( 406870 20740 ) ( * 375700 )
+      NEW met3 ( 258750 375700 ) ( 406870 * )
+      NEW met2 ( 812590 1700 0 ) ( * 16660 )
+      NEW met3 ( 406870 16660 ) ( 812590 * )
+      NEW met2 ( 256680 364820 0 ) ( 258750 * )
+      NEW met2 ( 258750 364820 ) ( * 375700 )
+      NEW met2 ( 406870 16660 ) M2M3_PR
+      NEW met2 ( 406870 375700 ) M2M3_PR
+      NEW met2 ( 258750 375700 ) M2M3_PR
+      NEW met2 ( 812590 16660 ) M2M3_PR ;
     - la_data_out[110] ( PIN la_data_out[110] ) + USE SIGNAL ;
     - la_data_out[111] ( PIN la_data_out[111] ) + USE SIGNAL ;
     - la_data_out[112] ( PIN la_data_out[112] ) + USE SIGNAL ;
@@ -8201,7 +8192,15 @@ NETS 637 ;
     - la_data_out[17] ( PIN la_data_out[17] ) + USE SIGNAL ;
     - la_data_out[18] ( PIN la_data_out[18] ) + USE SIGNAL ;
     - la_data_out[19] ( PIN la_data_out[19] ) + USE SIGNAL ;
-    - la_data_out[1] ( PIN la_data_out[1] ) + USE SIGNAL ;
+    - la_data_out[1] ( PIN la_data_out[1] ) ( kws_accel psram_sck ) + USE SIGNAL
+      + ROUTED met2 ( 279450 5100 ) ( * 13940 )
+      NEW met2 ( 279220 13940 ) ( 279450 * )
+      NEW met2 ( 279220 13940 ) ( * 15300 0 )
+      NEW met2 ( 652970 1700 0 ) ( * 5100 )
+      NEW met2 ( 651590 5100 ) ( 652970 * )
+      NEW met3 ( 279450 5100 ) ( 651590 * )
+      NEW met2 ( 279450 5100 ) M2M3_PR
+      NEW met2 ( 651590 5100 ) M2M3_PR ;
     - la_data_out[20] ( PIN la_data_out[20] ) + USE SIGNAL ;
     - la_data_out[21] ( PIN la_data_out[21] ) + USE SIGNAL ;
     - la_data_out[22] ( PIN la_data_out[22] ) + USE SIGNAL ;
@@ -8212,7 +8211,14 @@ NETS 637 ;
     - la_data_out[27] ( PIN la_data_out[27] ) + USE SIGNAL ;
     - la_data_out[28] ( PIN la_data_out[28] ) + USE SIGNAL ;
     - la_data_out[29] ( PIN la_data_out[29] ) + USE SIGNAL ;
-    - la_data_out[2] ( PIN la_data_out[2] ) + USE SIGNAL ;
+    - la_data_out[2] ( PIN la_data_out[2] ) ( kws_accel psram_ce_n ) + USE SIGNAL
+      + ROUTED met2 ( 670910 1700 0 ) ( * 13260 )
+      NEW met3 ( 47150 13260 ) ( 670910 * )
+      NEW met3 ( 47150 246500 ) ( 60260 * 0 )
+      NEW met2 ( 47150 13260 ) ( * 246500 )
+      NEW met2 ( 670910 13260 ) M2M3_PR
+      NEW met2 ( 47150 13260 ) M2M3_PR
+      NEW met2 ( 47150 246500 ) M2M3_PR ;
     - la_data_out[30] ( PIN la_data_out[30] ) + USE SIGNAL ;
     - la_data_out[31] ( PIN la_data_out[31] ) + USE SIGNAL ;
     - la_data_out[32] ( PIN la_data_out[32] ) + USE SIGNAL ;
@@ -8223,7 +8229,18 @@ NETS 637 ;
     - la_data_out[37] ( PIN la_data_out[37] ) + USE SIGNAL ;
     - la_data_out[38] ( PIN la_data_out[38] ) + USE SIGNAL ;
     - la_data_out[39] ( PIN la_data_out[39] ) + USE SIGNAL ;
-    - la_data_out[3] ( PIN la_data_out[3] ) + USE SIGNAL ;
+    - la_data_out[3] ( PIN la_data_out[3] ) ( kws_accel psram_d[0] ) + USE SIGNAL
+      + ROUTED met2 ( 102350 6460 ) ( * 13940 )
+      NEW met2 ( 102120 13940 ) ( 102350 * )
+      NEW met2 ( 102120 13940 ) ( * 15300 0 )
+      NEW met2 ( 688390 1700 0 ) ( * 19380 )
+      NEW met2 ( 648830 6460 ) ( * 19380 )
+      NEW met3 ( 102350 6460 ) ( 648830 * )
+      NEW met3 ( 648830 19380 ) ( 688390 * )
+      NEW met2 ( 102350 6460 ) M2M3_PR
+      NEW met2 ( 688390 19380 ) M2M3_PR
+      NEW met2 ( 648830 6460 ) M2M3_PR
+      NEW met2 ( 648830 19380 ) M2M3_PR ;
     - la_data_out[40] ( PIN la_data_out[40] ) + USE SIGNAL ;
     - la_data_out[41] ( PIN la_data_out[41] ) + USE SIGNAL ;
     - la_data_out[42] ( PIN la_data_out[42] ) + USE SIGNAL ;
@@ -8234,7 +8251,17 @@ NETS 637 ;
     - la_data_out[47] ( PIN la_data_out[47] ) + USE SIGNAL ;
     - la_data_out[48] ( PIN la_data_out[48] ) + USE SIGNAL ;
     - la_data_out[49] ( PIN la_data_out[49] ) + USE SIGNAL ;
-    - la_data_out[4] ( PIN la_data_out[4] ) + USE SIGNAL ;
+    - la_data_out[4] ( PIN la_data_out[4] ) ( kws_accel psram_d[1] ) + USE SIGNAL
+      + ROUTED met2 ( 706330 1700 0 ) ( * 18020 )
+      NEW met3 ( 665850 18020 ) ( 706330 * )
+      NEW met2 ( 124660 364820 0 ) ( 126730 * )
+      NEW met2 ( 126730 364820 ) ( * 376380 )
+      NEW met2 ( 665850 18020 ) ( * 376380 )
+      NEW met3 ( 126730 376380 ) ( 665850 * )
+      NEW met2 ( 126730 376380 ) M2M3_PR
+      NEW met2 ( 706330 18020 ) M2M3_PR
+      NEW met2 ( 665850 18020 ) M2M3_PR
+      NEW met2 ( 665850 376380 ) M2M3_PR ;
     - la_data_out[50] ( PIN la_data_out[50] ) + USE SIGNAL ;
     - la_data_out[51] ( PIN la_data_out[51] ) + USE SIGNAL ;
     - la_data_out[52] ( PIN la_data_out[52] ) + USE SIGNAL ;
@@ -8245,7 +8272,14 @@ NETS 637 ;
     - la_data_out[57] ( PIN la_data_out[57] ) + USE SIGNAL ;
     - la_data_out[58] ( PIN la_data_out[58] ) + USE SIGNAL ;
     - la_data_out[59] ( PIN la_data_out[59] ) + USE SIGNAL ;
-    - la_data_out[5] ( PIN la_data_out[5] ) + USE SIGNAL ;
+    - la_data_out[5] ( PIN la_data_out[5] ) ( kws_accel psram_d[2] ) + USE SIGNAL
+      + ROUTED met2 ( 672750 15300 ) ( * 62900 )
+      NEW met2 ( 723810 1700 0 ) ( * 15300 )
+      NEW met3 ( 672750 15300 ) ( 723810 * )
+      NEW met3 ( 408940 62900 0 ) ( 672750 * )
+      NEW met2 ( 672750 15300 ) M2M3_PR
+      NEW met2 ( 672750 62900 ) M2M3_PR
+      NEW met2 ( 723810 15300 ) M2M3_PR ;
     - la_data_out[60] ( PIN la_data_out[60] ) + USE SIGNAL ;
     - la_data_out[61] ( PIN la_data_out[61] ) + USE SIGNAL ;
     - la_data_out[62] ( PIN la_data_out[62] ) + USE SIGNAL ;
@@ -8256,7 +8290,14 @@ NETS 637 ;
     - la_data_out[67] ( PIN la_data_out[67] ) + USE SIGNAL ;
     - la_data_out[68] ( PIN la_data_out[68] ) + USE SIGNAL ;
     - la_data_out[69] ( PIN la_data_out[69] ) + USE SIGNAL ;
-    - la_data_out[6] ( PIN la_data_out[6] ) + USE SIGNAL ;
+    - la_data_out[6] ( PIN la_data_out[6] ) ( kws_accel psram_d[3] ) + USE SIGNAL
+      + ROUTED met2 ( 192970 1700 ) ( * 13940 )
+      NEW met2 ( 192280 13940 ) ( 192970 * )
+      NEW met2 ( 192280 13940 ) ( * 15300 0 )
+      NEW met2 ( 739910 1700 ) ( 741750 * 0 )
+      NEW met3 ( 192970 1700 ) ( 739910 * )
+      NEW met2 ( 192970 1700 ) M2M3_PR
+      NEW met2 ( 739910 1700 ) M2M3_PR ;
     - la_data_out[70] ( PIN la_data_out[70] ) + USE SIGNAL ;
     - la_data_out[71] ( PIN la_data_out[71] ) + USE SIGNAL ;
     - la_data_out[72] ( PIN la_data_out[72] ) + USE SIGNAL ;
@@ -8267,7 +8308,14 @@ NETS 637 ;
     - la_data_out[77] ( PIN la_data_out[77] ) + USE SIGNAL ;
     - la_data_out[78] ( PIN la_data_out[78] ) + USE SIGNAL ;
     - la_data_out[79] ( PIN la_data_out[79] ) + USE SIGNAL ;
-    - la_data_out[7] ( PIN la_data_out[7] ) + USE SIGNAL ;
+    - la_data_out[7] ( PIN la_data_out[7] ) ( kws_accel psram_douten[0] ) + USE SIGNAL
+      + ROUTED met2 ( 759230 1700 0 ) ( * 12580 )
+      NEW met3 ( 45770 12580 ) ( 759230 * )
+      NEW met3 ( 45770 338300 ) ( 60260 * 0 )
+      NEW met2 ( 45770 12580 ) ( * 338300 )
+      NEW met2 ( 759230 12580 ) M2M3_PR
+      NEW met2 ( 45770 12580 ) M2M3_PR
+      NEW met2 ( 45770 338300 ) M2M3_PR ;
     - la_data_out[80] ( PIN la_data_out[80] ) + USE SIGNAL ;
     - la_data_out[81] ( PIN la_data_out[81] ) + USE SIGNAL ;
     - la_data_out[82] ( PIN la_data_out[82] ) + USE SIGNAL ;
@@ -8278,7 +8326,14 @@ NETS 637 ;
     - la_data_out[87] ( PIN la_data_out[87] ) + USE SIGNAL ;
     - la_data_out[88] ( PIN la_data_out[88] ) + USE SIGNAL ;
     - la_data_out[89] ( PIN la_data_out[89] ) + USE SIGNAL ;
-    - la_data_out[8] ( PIN la_data_out[8] ) + USE SIGNAL ;
+    - la_data_out[8] ( PIN la_data_out[8] ) ( kws_accel psram_douten[1] ) + USE SIGNAL
+      + ROUTED met2 ( 777170 1700 0 ) ( * 15980 )
+      NEW met2 ( 686550 15980 ) ( * 294100 )
+      NEW met3 ( 408940 294100 0 ) ( 686550 * )
+      NEW met3 ( 686550 15980 ) ( 777170 * )
+      NEW met2 ( 686550 15980 ) M2M3_PR
+      NEW met2 ( 686550 294100 ) M2M3_PR
+      NEW met2 ( 777170 15980 ) M2M3_PR ;
     - la_data_out[90] ( PIN la_data_out[90] ) + USE SIGNAL ;
     - la_data_out[91] ( PIN la_data_out[91] ) + USE SIGNAL ;
     - la_data_out[92] ( PIN la_data_out[92] ) + USE SIGNAL ;
@@ -8289,7 +8344,17 @@ NETS 637 ;
     - la_data_out[97] ( PIN la_data_out[97] ) + USE SIGNAL ;
     - la_data_out[98] ( PIN la_data_out[98] ) + USE SIGNAL ;
     - la_data_out[99] ( PIN la_data_out[99] ) + USE SIGNAL ;
-    - la_data_out[9] ( PIN la_data_out[9] ) + USE SIGNAL ;
+    - la_data_out[9] ( PIN la_data_out[9] ) ( kws_accel psram_douten[2] ) + USE SIGNAL
+      + ROUTED met2 ( 794650 1700 0 ) ( * 19380 )
+      NEW met2 ( 211600 364820 0 ) ( 213670 * )
+      NEW met2 ( 213670 364820 ) ( * 373660 )
+      NEW met2 ( 700350 19380 ) ( * 373660 )
+      NEW met3 ( 213670 373660 ) ( 700350 * )
+      NEW met3 ( 700350 19380 ) ( 794650 * )
+      NEW met2 ( 213670 373660 ) M2M3_PR
+      NEW met2 ( 700350 19380 ) M2M3_PR
+      NEW met2 ( 700350 373660 ) M2M3_PR
+      NEW met2 ( 794650 19380 ) M2M3_PR ;
     - la_oenb[0] ( PIN la_oenb[0] ) + USE SIGNAL ;
     - la_oenb[100] ( PIN la_oenb[100] ) + USE SIGNAL ;
     - la_oenb[101] ( PIN la_oenb[101] ) + USE SIGNAL ;
@@ -8418,21 +8483,22 @@ NETS 637 ;
     - la_oenb[98] ( PIN la_oenb[98] ) + USE SIGNAL ;
     - la_oenb[99] ( PIN la_oenb[99] ) + USE SIGNAL ;
     - la_oenb[9] ( PIN la_oenb[9] ) + USE SIGNAL ;
-    - user_clock2 ( PIN user_clock2 ) + USE SIGNAL ;
+    - user_clock2 ( PIN user_clock2 ) ( kws_accel clk ) + USE SIGNAL
+      + ROUTED met2 ( 2899150 1700 0 ) ( * 9860 )
+      NEW met3 ( 46230 107100 ) ( 60260 * 0 )
+      NEW met3 ( 46230 9860 ) ( 2899150 * )
+      NEW met2 ( 46230 9860 ) ( * 107100 )
+      NEW met2 ( 2899150 9860 ) M2M3_PR
+      NEW met2 ( 46230 9860 ) M2M3_PR
+      NEW met2 ( 46230 107100 ) M2M3_PR ;
     - user_irq[0] ( PIN user_irq[0] ) + USE SIGNAL ;
     - user_irq[1] ( PIN user_irq[1] ) + USE SIGNAL ;
     - user_irq[2] ( PIN user_irq[2] ) + USE SIGNAL ;
-    - wb_clk_i ( PIN wb_clk_i ) ( kws_accel clk ) + USE CLOCK
-      + ROUTED met2 ( 2070 340 ) ( 2990 * 0 )
-      NEW met2 ( 197110 340 ) ( * 15300 )
-      NEW met2 ( 197110 15300 ) ( 198720 * 0 )
-      NEW met3 ( 2070 340 ) ( 197110 * )
-      NEW met2 ( 2070 340 ) M2M3_PR
-      NEW met2 ( 197110 340 ) M2M3_PR ;
+    - wb_clk_i ( PIN wb_clk_i ) + USE SIGNAL ;
     - wb_rst_i ( PIN wb_rst_i ) ( kws_accel rst ) + USE SIGNAL
-      + ROUTED met2 ( 8510 1700 0 ) ( * 120700 )
-      NEW met3 ( 8510 120700 ) ( 60260 * 0 )
-      NEW met2 ( 8510 120700 ) M2M3_PR ;
+      + ROUTED met2 ( 8510 1700 0 ) ( * 198900 )
+      NEW met3 ( 8510 198900 ) ( 60260 * 0 )
+      NEW met2 ( 8510 198900 ) M2M3_PR ;
     - wbs_ack_o ( PIN wbs_ack_o ) + USE SIGNAL ;
     - wbs_adr_i[0] ( PIN wbs_adr_i[0] ) + USE SIGNAL ;
     - wbs_adr_i[10] ( PIN wbs_adr_i[10] ) + USE SIGNAL ;
@@ -8535,14 +8601,7 @@ NETS 637 ;
     - wbs_sel_i[1] ( PIN wbs_sel_i[1] ) + USE SIGNAL ;
     - wbs_sel_i[2] ( PIN wbs_sel_i[2] ) + USE SIGNAL ;
     - wbs_sel_i[3] ( PIN wbs_sel_i[3] ) + USE SIGNAL ;
-    - wbs_stb_i ( PIN wbs_stb_i ) ( kws_accel start ) + USE SIGNAL
-      + ROUTED met2 ( 26450 1700 0 ) ( * 16660 )
-      NEW met3 ( 408940 181900 0 ) ( 414230 * )
-      NEW met2 ( 414230 16660 ) ( * 181900 )
-      NEW met3 ( 26450 16660 ) ( 414230 * )
-      NEW met2 ( 26450 16660 ) M2M3_PR
-      NEW met2 ( 414230 16660 ) M2M3_PR
-      NEW met2 ( 414230 181900 ) M2M3_PR ;
+    - wbs_stb_i ( PIN wbs_stb_i ) + USE SIGNAL ;
     - wbs_we_i ( PIN wbs_we_i ) + USE SIGNAL ;
 END NETS
 END DESIGN

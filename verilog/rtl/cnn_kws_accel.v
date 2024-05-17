@@ -18,9 +18,6 @@ module cnn_kws_accel (
     inout wire [3:0] psram_d,
     output wire [3:0] psram_douten,
 
-    // Unused I/O signals
-    output wire [37:0] io_out,
-    output wire [37:0] io_oeb
 );
 
     // Internal signals for PSRAM
@@ -283,9 +280,8 @@ module cnn_kws_accel (
     // Assign overall done signal
     assign done = (state == SOFTMAX) && softmax_done;
 
-    // Tie unused io_out signals low
-    assign io_out = 38'b0000_0000_0000_0000_0000_0000_0000_0000_0000;
-    assign io_oeb = 38'b1111_1111_1111_1111_1111_1111_1111_1111_1111;
+
+
 
 endmodule
 

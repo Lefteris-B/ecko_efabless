@@ -46,6 +46,7 @@ module user_project_wrapper #(
     output [`MPRJ_IO_PADS-1:0] io_out,
     output [`MPRJ_IO_PADS-1:0] io_oeb,
 
+
     // Analog (direct connection to GPIO pad---use with caution)
     // Note that analog I/O is not available on the 7 lowest-numbered
     // GPIO pads, and so the analog_io indexing is offset from the
@@ -69,16 +70,16 @@ cnn_kws_accel kws_accel (
 	.vssd1(vssd1),	// User area 1 digital ground
 `endif
 
-    .clk(wb_clk_i),
+    .clk(user_clock2),
     .rst(wb_rst_i),
-    .start(wbs_stb_i),
-    .audio_sample(io_in[15:0]),
-    .sample_valid(io_in[16]),
-    .done(io_out[0]),
-    .psram_sck(io_out[1]),
-    .psram_ce_n(io_out[2]),
-    .psram_d(io_out[6:3]),
-    .psram_douten(io_out[10:7])
+    .start(la_data_in[1]),
+    .audio_sample(la_data_in[15:0]),
+    .sample_valid(la_data_in[16]),
+    .done(la_data_out[0]),
+    .psram_sck(la_data_out[1]),
+    .psram_ce_n(la_data_out[2]),
+    .psram_d(la_data_out[6:3]),
+    .psram_douten(la_data_out[10:7])
 );
 
 endmodule	// user_project_wrapper
