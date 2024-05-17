@@ -63,7 +63,7 @@ module user_project_wrapper #(
 /* User project is instantiated here   */
 /*--------------------------------------*/
 
-cnn_kws_accel mprj (
+cnn_kws_accel kws_accel (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground

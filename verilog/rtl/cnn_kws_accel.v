@@ -284,8 +284,8 @@ module cnn_kws_accel (
     assign done = (state == SOFTMAX) && softmax_done;
 
     // Tie unused io_out signals low
-    assign io_out = 38'b0000_0000;
-    assign io_oeb = 38'b0000_0000;
+    assign io_out = 38'b0000_0000_0000_0000_0000_0000_0000_0000_0000;
+    assign io_oeb = 38'b1111_1111_1111_1111_1111_1111_1111_1111_1111;
 
 endmodule
 

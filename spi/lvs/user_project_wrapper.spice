@@ -4,9 +4,18 @@
 .subckt cnn_kws_accel audio_sample[0] audio_sample[10] audio_sample[11] audio_sample[12]
 + audio_sample[13] audio_sample[14] audio_sample[15] audio_sample[1] audio_sample[2]
 + audio_sample[3] audio_sample[4] audio_sample[5] audio_sample[6] audio_sample[7]
-+ audio_sample[8] audio_sample[9] clk done psram_ce_n psram_d[0] psram_d[1] psram_d[2]
-+ psram_d[3] psram_douten[0] psram_douten[1] psram_douten[2] psram_douten[3] psram_sck
-+ rst sample_valid start vccd1 vssd1
++ audio_sample[8] audio_sample[9] clk done io_oeb[0] io_oeb[10] io_oeb[11] io_oeb[12]
++ io_oeb[13] io_oeb[14] io_oeb[15] io_oeb[16] io_oeb[17] io_oeb[18] io_oeb[19] io_oeb[1]
++ io_oeb[20] io_oeb[21] io_oeb[22] io_oeb[23] io_oeb[24] io_oeb[25] io_oeb[26] io_oeb[27]
++ io_oeb[28] io_oeb[29] io_oeb[2] io_oeb[30] io_oeb[31] io_oeb[32] io_oeb[33] io_oeb[34]
++ io_oeb[35] io_oeb[36] io_oeb[37] io_oeb[3] io_oeb[4] io_oeb[5] io_oeb[6] io_oeb[7]
++ io_oeb[8] io_oeb[9] io_out[0] io_out[10] io_out[11] io_out[12] io_out[13] io_out[14]
++ io_out[15] io_out[16] io_out[17] io_out[18] io_out[19] io_out[1] io_out[20] io_out[21]
++ io_out[22] io_out[23] io_out[24] io_out[25] io_out[26] io_out[27] io_out[28] io_out[29]
++ io_out[2] io_out[30] io_out[31] io_out[32] io_out[33] io_out[34] io_out[35] io_out[36]
++ io_out[37] io_out[3] io_out[4] io_out[5] io_out[6] io_out[7] io_out[8] io_out[9]
++ psram_ce_n psram_d[0] psram_d[1] psram_d[2] psram_d[3] psram_douten[0] psram_douten[1]
++ psram_douten[2] psram_douten[3] psram_sck rst sample_valid start vccd1 vssd1
 .ends
 
 .subckt user_project_wrapper analog_io[0] analog_io[10] analog_io[11] analog_io[12]
@@ -112,7 +121,26 @@
 + wbs_sel_i[1] wbs_sel_i[2] wbs_sel_i[3] wbs_stb_i wbs_we_i
 Xkws_accel io_in[0] io_in[10] io_in[11] io_in[12] io_in[13] io_in[14] io_in[15] io_in[1]
 + io_in[2] io_in[3] io_in[4] io_in[5] io_in[6] io_in[7] io_in[8] io_in[9] wb_clk_i
-+ io_out[0] io_out[2] io_out[3] io_out[4] io_out[5] io_out[6] io_out[3] io_out[4]
-+ io_out[5] io_out[6] io_out[1] wb_rst_i io_in[16] io_in[0] vccd1 vssd1 cnn_kws_accel
++ io_out[0] kws_accel/io_oeb[0] kws_accel/io_oeb[10] kws_accel/io_oeb[11] kws_accel/io_oeb[12]
++ kws_accel/io_oeb[13] kws_accel/io_oeb[14] kws_accel/io_oeb[15] kws_accel/io_oeb[16]
++ kws_accel/io_oeb[17] kws_accel/io_oeb[18] kws_accel/io_oeb[19] kws_accel/io_oeb[1]
++ kws_accel/io_oeb[20] kws_accel/io_oeb[21] kws_accel/io_oeb[22] kws_accel/io_oeb[23]
++ kws_accel/io_oeb[24] kws_accel/io_oeb[25] kws_accel/io_oeb[26] kws_accel/io_oeb[27]
++ kws_accel/io_oeb[28] kws_accel/io_oeb[29] kws_accel/io_oeb[2] kws_accel/io_oeb[30]
++ kws_accel/io_oeb[31] kws_accel/io_oeb[32] kws_accel/io_oeb[33] kws_accel/io_oeb[34]
++ kws_accel/io_oeb[35] kws_accel/io_oeb[36] kws_accel/io_oeb[37] kws_accel/io_oeb[3]
++ kws_accel/io_oeb[4] kws_accel/io_oeb[5] kws_accel/io_oeb[6] kws_accel/io_oeb[7]
++ kws_accel/io_oeb[8] kws_accel/io_oeb[9] kws_accel/io_out[0] kws_accel/io_out[10]
++ kws_accel/io_out[11] kws_accel/io_out[12] kws_accel/io_out[13] kws_accel/io_out[14]
++ kws_accel/io_out[15] kws_accel/io_out[16] kws_accel/io_out[17] kws_accel/io_out[18]
++ kws_accel/io_out[19] kws_accel/io_out[1] kws_accel/io_out[20] kws_accel/io_out[21]
++ kws_accel/io_out[22] kws_accel/io_out[23] kws_accel/io_out[24] kws_accel/io_out[25]
++ kws_accel/io_out[26] kws_accel/io_out[27] kws_accel/io_out[28] kws_accel/io_out[29]
++ kws_accel/io_out[2] kws_accel/io_out[30] kws_accel/io_out[31] kws_accel/io_out[32]
++ kws_accel/io_out[33] kws_accel/io_out[34] kws_accel/io_out[35] kws_accel/io_out[36]
++ kws_accel/io_out[37] kws_accel/io_out[3] kws_accel/io_out[4] kws_accel/io_out[5]
++ kws_accel/io_out[6] kws_accel/io_out[7] kws_accel/io_out[8] kws_accel/io_out[9]
++ io_out[2] io_out[3] io_out[4] io_out[5] io_out[6] io_out[7] io_out[8] io_out[9]
++ io_out[10] io_out[1] wb_rst_i io_in[16] wbs_stb_i vccd1 vssd1 cnn_kws_accel
 .ends
 
