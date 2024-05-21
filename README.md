@@ -1,5 +1,6 @@
 #Ecko - A KWS - Caravel User Project
 
+Ecko project : [https://github.com/Lefteris-B/Ecko](https://github.com/Lefteris-B/Ecko)
 
 ## Please fill in your project documentation in this README.md file 
 
