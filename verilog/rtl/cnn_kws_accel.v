@@ -18,6 +18,9 @@ module cnn_kws_accel (
     inout wire [3:0] psram_d,
     output wire [3:0] psram_douten,
 
+    // Unused I/O signals
+    output wire [37:0] io_out,
+    output wire [37:0] io_oeb
 );
 
     // Internal signals for PSRAM
@@ -103,17 +106,17 @@ module cnn_kws_accel (
     wire mfcc_valid;
 
     wire [23:0] conv1_weight_base_addr = 24'h000000;
-    wire [23:0] conv1_bias_base_addr = 24'h000100;
-    wire [23:0] conv2_weight_base_addr = 24'h000200;
-    wire [23:0] conv2_bias_base_addr = 24'h000300;
-    wire [23:0] fc1_weight_base_addr = 24'h000400;
-    wire [23:0] fc1_bias_base_addr = 24'h000500;
-    wire [23:0] fc2_weight_base_addr = 24'h000600;
-    wire [23:0] fc2_bias_base_addr = 24'h000700;
-    wire [23:0] maxpool_input_addr = 24'h000800;
-    wire [23:0] maxpool_output_addr = 24'h000900;
-    wire [23:0] softmax_input_addr = 24'h000A00;
-    wire [23:0] softmax_output_addr = 24'h000B00;
+    wire [23:0] conv1_bias_base_addr = 24'h000300;
+    wire [23:0] conv2_weight_base_addr = 24'h000600;
+    wire [23:0] conv2_bias_base_addr = 24'h000900;
+    wire [23:0] fc1_weight_base_addr = 24'h000C00;
+    wire [23:0] fc1_bias_base_addr = 24'h001400;
+    wire [23:0] fc2_weight_base_addr = 24'h001600;
+    wire [23:0] fc2_bias_base_addr = 24'h001800;
+    wire [23:0] maxpool_input_addr = 24'h001A00;
+    wire [23:0] maxpool_output_addr = 24'h002000;
+    wire [23:0] softmax_input_addr = 24'h002200;
+    wire [23:0] softmax_output_addr = 24'h002300;
 
     wire conv1_done, conv2_done, fc1_done, fc2_done, maxpool_done, softmax_done;
     wire conv1_data_valid = (state == CONV1);
@@ -166,6 +169,8 @@ module cnn_kws_accel (
         .psram_douten(conv1_psram_douten),
         .weight_base_addr(conv1_weight_base_addr),
         .bias_base_addr(conv1_bias_base_addr),
+        .input_base_addr(24'h000000),
+        .output_base_addr(24'h000400),
         .done(conv1_done)
     );
 
@@ -190,6 +195,8 @@ module cnn_kws_accel (
         .psram_douten(conv2_psram_douten),
         .weight_base_addr(conv2_weight_base_addr),
         .bias_base_addr(conv2_bias_base_addr),
+        .input_base_addr(24'h000500),
+        .output_base_addr(24'h000900),
         .done(conv2_done)
     );
 
@@ -210,6 +217,7 @@ module cnn_kws_accel (
         .psram_douten(fc1_psram_douten),
         .weight_base_addr(fc1_weight_base_addr),
         .bias_base_addr(fc1_bias_base_addr),
+        .output_base_addr(24'h001000),
         .done(fc1_done)
     );
 
@@ -230,6 +238,7 @@ module cnn_kws_accel (
         .psram_douten(fc2_psram_douten),
         .weight_base_addr(fc2_weight_base_addr),
         .bias_base_addr(fc2_bias_base_addr),
+        .output_base_addr(24'h001600),
         .done(fc2_done)
     );
 
@@ -264,12 +273,6 @@ module cnn_kws_accel (
         .start(softmax_start),
         .input_addr(softmax_input_addr),
         .output_addr(softmax_output_addr),
-        .size(3'b010),
-        .cmd(8'hEB),
-        .rd_wr(1'b1),
-        .qspi(1'b0),
-        .qpi(1'b0),
-        .short_cmd(1'b0),
         .done(softmax_done),
         .psram_sck(softmax_psram_sck),
         .psram_ce_n(softmax_psram_ce_n),
@@ -280,8 +283,9 @@ module cnn_kws_accel (
     // Assign overall done signal
     assign done = (state == SOFTMAX) && softmax_done;
 
-
-
+    // Tie unused io_out signals low
+    assign io_out = 38'b0000_0000;
+    assign io_oeb = 38'b0000_0000;
 
 endmodule
 

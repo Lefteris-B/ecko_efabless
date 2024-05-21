@@ -1,7 +1,8 @@
 module fully_connected_psram #(
     parameter INPUT_SIZE = 320,
     parameter OUTPUT_SIZE = 64,
-    parameter ACTIV_BITS = 16
+    parameter ACTIV_BITS = 16,
+    parameter ADDR_WIDTH = 24
 ) (
     input wire clk,
     input wire rst,
@@ -18,8 +19,9 @@ module fully_connected_psram #(
     output wire [3:0] psram_douten,
     
     // Base addresses for weights and biases
-    input wire [23:0] weight_base_addr,
-    input wire [23:0] bias_base_addr
+    input wire [ADDR_WIDTH-1:0] weight_base_addr,
+    input wire [ADDR_WIDTH-1:0] bias_base_addr,
+    input wire [ADDR_WIDTH-1:0] output_base_addr
 );
 
     // State definitions
@@ -30,8 +32,8 @@ module fully_connected_psram #(
                STORE_RESULT = 4,
                DONE = 5;
 
-    reg [3:0] state, next_state;
-    reg [23:0] addr;
+    reg [2:0] state, next_state;
+    reg [ADDR_WIDTH-1:0] addr;
     reg [31:0] psram_data;
     reg psram_start, psram_rd_wr;
     reg [2:0] psram_size;
@@ -68,6 +70,8 @@ module fully_connected_psram #(
     reg [ACTIV_BITS-1:0] fc_result [0:OUTPUT_SIZE-1];
 
     integer i, j;
+    reg [15:0] weight_counter;
+    reg [15:0] bias_counter;
 
     // State machine
     always @(posedge clk) begin
@@ -81,8 +85,8 @@ module fully_connected_psram #(
         next_state = state;
         case (state)
             IDLE: if (data_valid) next_state = LOAD_WEIGHTS;
-            LOAD_WEIGHTS: if (psram_done) next_state = LOAD_BIASES;
-            LOAD_BIASES: if (psram_done) next_state = FC;
+            LOAD_WEIGHTS: if (weight_counter == (INPUT_SIZE * OUTPUT_SIZE)) next_state = LOAD_BIASES;
+            LOAD_BIASES: if (bias_counter == OUTPUT_SIZE) next_state = FC;
             FC: next_state = STORE_RESULT;
             STORE_RESULT: if (psram_done) next_state = DONE;
             DONE: next_state = IDLE;
@@ -92,32 +96,50 @@ module fully_connected_psram #(
     // Control logic for PSRAM operations
     always @(posedge clk) begin
         if (rst) begin
-            addr <= 24'b0;
-            psram_data <= 32'b0;
+            addr <= 0;
+            psram_data <= 0;
             psram_start <= 0;
             psram_rd_wr <= 0;
             psram_size <= 3'b010; // 4 bytes
             psram_qspi <= 0;
             psram_qpi <= 0;
             psram_short_cmd <= 0;
+            weight_counter <= 0;
+            bias_counter <= 0;
         end else begin
             psram_start <= 0;
             case (state)
                 LOAD_WEIGHTS: begin
-                    addr <= weight_base_addr;
-                    psram_rd_wr <= 1;
-                    psram_start <= 1;
+                    if (!psram_start) begin
+                        addr <= weight_base_addr + weight_counter * 2; // Each weight is 2 bytes
+                        psram_rd_wr <= 1; // Read operation
+                        psram_start <= 1;
+                    end else if (psram_done) begin
+                        // Unpack data and store in weights register
+                        weights[weight_counter / INPUT_SIZE][weight_counter % INPUT_SIZE] <= psram_data_out[ACTIV_BITS-1:0];
+                        weight_counter <= weight_counter + 1;
+                    end
                 end
+
                 LOAD_BIASES: begin
-                    addr <= bias_base_addr;
-                    psram_rd_wr <= 1;
-                    psram_start <= 1;
+                    if (!psram_start) begin
+                        addr <= bias_base_addr + bias_counter * 2; // Each bias is 2 bytes
+                        psram_rd_wr <= 1; // Read operation
+                        psram_start <= 1;
+                    end else if (psram_done) begin
+                        // Store data in biases register
+                        biases[bias_counter] <= psram_data_out[ACTIV_BITS-1:0];
+                        bias_counter <= bias_counter + 1;
+                    end
                 end
+
                 STORE_RESULT: begin
-                    addr <= 24'hXXXXXX; // Address to store results in PSRAM
-                    psram_data <= fc_result[i];
-                    psram_rd_wr <= 0;
-                    psram_start <= 1;
+                    if (!psram_start) begin
+                        addr <= output_base_addr + i * 2; // Address to store results in PSRAM
+                        psram_data <= {16'b0, fc_result[i]}; // Write result
+                        psram_rd_wr <= 0; // Write operation
+                        psram_start <= 1;
+                    end
                 end
             endcase
         end
@@ -140,6 +162,7 @@ module fully_connected_psram #(
         end
     end
 
+    // Output result
     assign data_out = {fc_result[0], fc_result[1], fc_result[2], fc_result[3], fc_result[4], fc_result[5], fc_result[6], fc_result[7]};
     assign data_out_valid = (state == DONE);
     assign done = (state == DONE); // Drive the done signal when state is DONE

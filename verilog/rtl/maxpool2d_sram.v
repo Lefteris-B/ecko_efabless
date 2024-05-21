@@ -64,8 +64,8 @@ module maxpool_psram #(
     reg [ACTIV_BITS-1:0] max_value [0:INPUT_CHANNELS-1];
     reg [(INPUT_WIDTH/STRIDE) * INPUT_CHANNELS * ACTIV_BITS-1:0] data_out;
     reg data_out_valid;
-    
-    integer i, j, k, m, n;
+
+    integer i, j, k, m, n, input_load_count, output_store_count;
 
     // State machine
     always @(posedge clk) begin
@@ -79,9 +79,9 @@ module maxpool_psram #(
         next_state = state;
         case (state)
             IDLE: if (start) next_state = LOAD_INPUT;
-            LOAD_INPUT: if (psram_done) next_state = MAXPOOL;
+            LOAD_INPUT: if (input_load_count == (INPUT_WIDTH * INPUT_HEIGHT * INPUT_CHANNELS)) next_state = MAXPOOL;
             MAXPOOL: next_state = STORE_OUTPUT;
-            STORE_OUTPUT: if (psram_done) next_state = DONE;
+            STORE_OUTPUT: if (output_store_count == ((INPUT_WIDTH/STRIDE) * (INPUT_HEIGHT/STRIDE) * INPUT_CHANNELS)) next_state = DONE;
             DONE: next_state = IDLE;
             default: next_state = IDLE;
         endcase
@@ -98,19 +98,34 @@ module maxpool_psram #(
             psram_qspi <= 0;
             psram_qpi <= 0;
             psram_short_cmd <= 0;
+            input_load_count <= 0;
+            output_store_count <= 0;
         end else begin
             psram_start <= 0;
             case (state)
                 LOAD_INPUT: begin
-                    addr <= input_addr;
-                    psram_rd_wr <= 1;
-                    psram_start <= 1;
+                    if (!psram_start) begin
+                        addr <= input_addr + input_load_count * 2; // Each data is 2 bytes
+                        psram_rd_wr <= 1; // Read operation
+                        psram_start <= 1;
+                    end else if (psram_done) begin
+                        // Store data in input_buffer
+                        input_buffer[input_load_count / (INPUT_WIDTH * INPUT_CHANNELS)]
+                                    [(input_load_count % (INPUT_WIDTH * INPUT_CHANNELS)) / INPUT_CHANNELS]
+                                    [input_load_count % INPUT_CHANNELS] <= psram_data_o[ACTIV_BITS-1:0];
+                        input_load_count <= input_load_count + 1;
+                    end
                 end
+
                 STORE_OUTPUT: begin
-                    addr <= output_addr;
-                    psram_data_i <= {max_value[3], max_value[2], max_value[1], max_value[0]}; // Adjust if needed
-                    psram_rd_wr <= 0;
-                    psram_start <= 1;
+                    if (!psram_start) begin
+                        addr <= output_addr + output_store_count * 2; // Address to store results in PSRAM
+                        psram_data_i <= {16'b0, data_out[output_store_count * ACTIV_BITS +: ACTIV_BITS]}; // Write result
+                        psram_rd_wr <= 0; // Write operation
+                        psram_start <= 1;
+                    end else if (psram_done) begin
+                        output_store_count <= output_store_count + 1;
+                    end
                 end
             endcase
         end
